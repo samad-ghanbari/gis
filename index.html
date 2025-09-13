@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vector Tile Map</title>
+    <!-- https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js -->
+    <script src="maplibre.js"></script>
+    <!-- https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css -->
+    <link href="maplibre.css" rel="stylesheet" />
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+      #map {
+        height: 80%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map" style="background-color: beige"></div>
+    <script>
+      const map = new maplibregl.Map({
+        container: "map",
+        style: {
+          version: 8,
+          sources: {
+            osm: {
+              type: "vector",
+              tiles: ["http://localhost:3000/tiles/{z}/{x}/{y}.pbf"],
+              minzoom: 0,
+              maxzoom: 14,
+            },
+          },
+          layers: [
+            {
+              id: "points",
+              type: "circle",
+              source: "osm",
+              "source-layer": "osm",
+              paint: {
+                "circle-radius": 5,
+                "circle-color": "#007cbf",
+              },
+            },
+          ],
+        },
+        center: [51.41, 35.7], // Tehran
+        zoom: 13,
+      });
+    </script>
+  </body>
+</html>
