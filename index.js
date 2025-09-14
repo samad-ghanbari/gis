@@ -36,7 +36,6 @@ app.get("/tiles/:z/:x/:y.pbf", async (req, res) => {
   const sql = `
   SELECT ST_AsGeoJSON(way) AS geometry, name
 FROM planet_osm_line
-WHERE way && ST_MakeEnvelope(8230000, 6200000, 8240000, 6210000, 3857)
 LIMIT 10;
   `;
 
