@@ -18,23 +18,63 @@
         height: 100%;
       }
       #map {
-        height: 80%;
+        height: 100%;
       }
     </style>
   </head>
   <body>
-    <div id="map" style="background-color: beige"></div>
+    <div id="map"></div>
     <script>
       const map = new maplibregl.Map({
         container: "map",
         style: {
           version: 8,
           sources: {
-            raster: {
-              type: "raster",
-              tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
-              tileSize: 256,
+            vector_tiles: {
+              type: "vector",
+              tiles: ["http://localhost:3000/tiles/{z}/{x}/{y}.pbf"],
+              minzoom: 0,
+              maxzoom: 15,
             },
+          },
+          layers: [
+            {
+              id: "roads",
+              type: "line",
+              source: "vector_tiles",
+              "source-layer": "osm_lines",
+
+              paint: {
+                "line-color": "#555",
+                "line-width": 1,
+              },
+            },
+            {
+              id: "buildings",
+              type: "fill",
+              source: "vector_tiles",
+              "source-layer": "osm_buildings",
+              paint: {
+                "fill-color": "#aaa",
+                "fill-opacity": 0.5,
+              },
+            },
+            {
+              id: "water",
+              type: "line",
+              source: "vector_tiles",
+              "source-layer": "osm_water",
+              paint: {
+                "line-color": "#3399ff",
+                "line-width": 1,
+              },
+            },
+          ],
+        },
+        /*
+        style: {
+          version: 8,
+          sources: {
             osm: {
               type: "vector",
               tiles: ["http://localhost:3000/tiles/{z}/{x}/{y}.pbf"],
@@ -55,8 +95,28 @@
             },
           ],
         },
+        */
         center: [51.41, 35.7], // Tehran
-        zoom: 12,
+        zoom: 14,
+      });
+
+      map.addLayer({
+        id: "road-labels",
+        type: "symbol",
+        source: "vector_tiles",
+        "source-layer": "osm_lines",
+        minzoom: 10,
+        maxzoom: 16,
+        layout: {
+          "text-field": ["get", "name"],
+          "text-size": 12,
+          "symbol-placement": "line",
+        },
+        paint: {
+          "text-color": "#000",
+          "text-halo-color": "#fff",
+          "text-halo-width": 1,
+        },
       });
     </script>
   </body>
