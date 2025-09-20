@@ -11,11 +11,14 @@ const app = express();
 app.use(cors()); // ← Enable CORS for all origins
 const pool = new Pool({
   user: "admin",
-  host: "10.10.10.56",
+  host: "10.10.10.96",
   database: "gis",
   password: "admin",
   port: 5432,
 });
+
+app.use("/fonts", express.static(path.join(__dirname, "public/fonts")));
+app.use("/", express.static(path.join(__dirname, "public")));
 
 app.get("/", async (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
@@ -34,64 +37,76 @@ app.get("/tiles/:z/:x/:y.pbf", async (req, res) => {
   // BBOX = [minX, minY, maxX, maxY]
   // query result is 3857
 
-  //   const sql = `
-  //   SELECT public.ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, name
-  //   FROM planet_osm_line
-  //   WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
-  //   LIMIT 1000
-  // `;
+  const limit = z > 12 ? 20000 : z > 10 ? 50000 : z > 5 ? 30000 : 10000;
 
-  //console.log(z);
-  const limit = z > 12 ? 20000 : z > 10 ? 50000 : 10000;
+  //console.log(z, limit);
 
   const layers = {
+    // Roads, highways, paths
     osm_lines: `
-    SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, name
+    SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, highway, name
     FROM planet_osm_line
     WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
-    AND highway IS NOT NULL
+      AND highway IS NOT NULL
     LIMIT ${limit};
   `,
+
+    // Buildings
     osm_buildings: `
-    SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, name
+    SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, building, name
     FROM planet_osm_polygon
     WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
-    AND building IS NOT NULL
+      AND building IS NOT NULL
     LIMIT ${limit};
   `,
+
+    // Water bodies (polygon)
     osm_water: `
-    SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, waterway
+    SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, water, name
+    FROM planet_osm_polygon
+    WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
+      AND water IS NOT NULL
+    LIMIT ${limit};
+  `,
+
+    // Parks and green areas
+    osm_parks: `
+    SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, leisure, name
+    FROM planet_osm_polygon
+    WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
+      AND (leisure = 'park' OR landuse IN ('grass', 'forest'))
+    LIMIT ${limit};
+  `,
+
+    // Railways
+    osm_railways: `
+    SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, railway, name
     FROM planet_osm_line
     WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
-    AND waterway IS NOT NULL
+      AND railway IS NOT NULL
+    LIMIT ${limit};
+  `,
+
+    // Points of Interest (POIs)
+    osm_pois: `
+    SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, name, amenity, shop, tourism
+    FROM planet_osm_point
+    WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
+      AND (amenity IS NOT NULL OR shop IS NOT NULL OR tourism IS NOT NULL)
+    LIMIT ${limit};
+  `,
+
+    // Place labels (cities, towns)
+    osm_places: `
+    SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, name, place
+    FROM planet_osm_point
+    WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
+      AND place IS NOT NULL
     LIMIT ${limit};
   `,
   };
 
   try {
-    //const values = bbox;
-    // const result = await pool.query(sql, values); // , bbox
-
-    // //geojson
-    // //features is an array of objects [{}, {}, {}]
-    // const features = result.rows.map((row) => ({
-    //   type: "Feature",
-    //   geometry: JSON.parse(row.geometry),
-    //   properties: { name: row.name },
-    // }));
-
-    // // converts large GeoJSON data into vector map tiles on the fly
-    // const tileIndex = geojsonvt({ type: "FeatureCollection", features });
-    // const tile = tileIndex.getTile(+z, +x, +y);
-
-    // if (!tile) return res.status(204).send();
-
-    // const buff = vtpbf.fromGeojsonVt({ osm: tile });
-    // //console.log(buff);
-
-    // res.setHeader("Content-Type", "application/x-protobuf");
-    // res.send(buff);
-
     const tileLayers = {};
 
     for (const [layerName, sql] of Object.entries(layers)) {
@@ -106,7 +121,7 @@ app.get("/tiles/:z/:x/:y.pbf", async (req, res) => {
       });
       const tileIndex = geojsonvt({ type: "FeatureCollection", features });
       const tile = tileIndex.getTile(+z, +x, +y);
-      //console.log("zoom level: ", z);
+      //console.log("tile: ", tile);
       if (tile) {
         tileLayers[layerName] = tile;
       }
