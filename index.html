@@ -218,8 +218,12 @@
               source: "vector_tiles",
               "source-layer": "osm_places",
               layout: {
-                "text-field": ["get", "name"],
-                "text-font": ["Open Sans Regular"],
+                "text-field": [
+                  "concat",
+                  "\u200F", // RLM character
+                  ["get", "name"],
+                ],
+                "text-font": ["BYekan"],
                 "text-size": [
                   "interpolate",
                   ["linear"],
@@ -229,8 +233,8 @@
                   14,
                   16,
                 ],
-                "text-allow-overlap": true,
-                "text-ignore-placement": true,
+                //"text-allow-overlap": true,
+                //"text-ignore-placement": true,
               },
               paint: {
                 "text-color": "#800",

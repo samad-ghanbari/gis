@@ -11,7 +11,7 @@ const app = express();
 app.use(cors()); // ← Enable CORS for all origins
 const pool = new Pool({
   user: "admin",
-  host: "10.10.10.96",
+  host: "10.10.10.56",
   database: "gis",
   password: "admin",
   port: 5432,
