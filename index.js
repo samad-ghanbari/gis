@@ -17,11 +17,35 @@ const pool = new Pool({
   port: 5432,
 });
 
-app.use("/fonts", express.static(path.join(__dirname, "public/fonts")));
 app.use("/", express.static(path.join(__dirname, "public")));
 
 app.get("/", async (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
+});
+
+app.get("/fonts/:fontstack/:range.pbf", (req, res) => {
+  const { fontstack, range } = req.params;
+
+  // Sanitize inputs for security (avoid directory traversal)
+  const safeFontstack = fontstack.replace(/[^a-zA-Z0-9_\-, ]/g, "");
+  const safeRange = range.replace(/[^0-9\-]/g, "");
+  console.log(fontstack);
+  // Construct file path
+  const fontPath = path.join(
+    __dirname,
+    "fonts",
+    safeFontstack,
+    `${safeRange}.pbf`
+  );
+
+  fs.readFile(fontPath, (err, data) => {
+    if (err) {
+      console.error("Font PBF not found:", fontPath);
+      return res.status(404).send("Font glyph not found");
+    }
+    res.setHeader("Content-Type", "application/x-protobuf");
+    res.send(data);
+  });
 });
 
 app.get("/tiles/:z/:x/:y.pbf", async (req, res) => {
@@ -88,21 +112,38 @@ app.get("/tiles/:z/:x/:y.pbf", async (req, res) => {
   `,
 
     // Points of Interest (POIs)
+    //     SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, name, amenity, shop, tourism
+    // FROM planet_osm_polygon
+    // WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
+    //   AND (amenity IS NOT NULL OR shop IS NOT NULL OR tourism IS NOT NULL)
+    // LIMIT ${limit};
+
     osm_pois: `
-    SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, name, amenity, shop, tourism
-    FROM planet_osm_point
-    WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
-      AND (amenity IS NOT NULL OR shop IS NOT NULL OR tourism IS NOT NULL)
-    LIMIT ${limit};
+        SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, name 
+         FROM planet_osm_polygon
+         WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
+        LIMIT ${limit};
   `,
 
     // Place labels (cities, towns)
+    // SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, name, place
+    // FROM planet_osm_point
+    // WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
+    //   AND place IS NOT NULL
+    // LIMIT ${limit};
+
+    //         SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, name, place
+    // FROM planet_osm_polygon
+    // WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
+    //   AND place IS NOT NULL
+    // LIMIT ${limit};
+
     osm_places: `
-    SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, name, place
-    FROM planet_osm_point
-    WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
-      AND place IS NOT NULL
+    SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, name 
+    FROM planet_osm_polygon
+    WHERE name is not NULL and way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
     LIMIT ${limit};
+   ;
   `,
   };
 
@@ -113,13 +154,16 @@ app.get("/tiles/:z/:x/:y.pbf", async (req, res) => {
       const result = await pool.query(sql, bbox);
       const features = result.rows.map((row) => {
         const { geometry, ...props } = row;
+
         return {
           type: "Feature",
           geometry: JSON.parse(geometry),
           properties: props,
         };
       });
+
       const tileIndex = geojsonvt({ type: "FeatureCollection", features });
+
       const tile = tileIndex.getTile(+z, +x, +y);
       //console.log("tile: ", tile);
       if (tile) {
@@ -130,10 +174,10 @@ app.get("/tiles/:z/:x/:y.pbf", async (req, res) => {
     const buff = vtpbf.fromGeojsonVt(tileLayers);
     res.setHeader("Content-Type", "application/x-protobuf");
     // res.setHeader("Content-Encoding", "gzip");
-    // res.setHeader(
-    //   "Content-Disposition",
-    //   `inline; filename="${z}-${x}-${y}.pbf"`
-    // );
+    res.setHeader(
+      "Content-Disposition",
+      `inline; filename="${z}-${x}-${y}.pbf"`
+    );
 
     res.send(buff);
   } catch (err) {

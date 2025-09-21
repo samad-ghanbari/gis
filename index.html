@@ -52,6 +52,7 @@
               type: "fill",
               source: "vector_tiles",
               "source-layer": "osm_water",
+
               paint: {
                 "fill-color": "#a0c8f0",
                 "fill-opacity": 0.6,
@@ -228,34 +229,38 @@
                   14,
                   16,
                 ],
+                "text-allow-overlap": true,
+                "text-ignore-placement": true,
               },
               paint: {
-                "text-color": "#222",
+                "text-color": "#800",
                 "text-halo-color": "#fff",
                 "text-halo-width": 1,
               },
             },
 
-            // POIs labels/icons
-            {
-              id: "poi-labels",
-              type: "symbol",
-              source: "vector_tiles",
-              "source-layer": "osm_pois",
-              layout: {
-                "icon-image": ["get", "icon"], // you need to add icon images to your sprite
-                "text-field": ["get", "name"],
-                "text-font": ["Open Sans Regular"],
-                "text-offset": [0, 0.6],
-                "text-anchor": "top",
-                "text-size": 12,
-              },
-              paint: {
-                "text-color": "#444",
-                "text-halo-color": "#fff",
-                "text-halo-width": 1,
-              },
-            },
+            // // POIs labels/icons
+            // {
+            //   id: "poi-labels",
+            //   type: "symbol",
+            //   source: "vector_tiles",
+            //   "source-layer": "osm_pois",
+            //   layout: {
+            //     "icon-image": ["get", "icon"], // you need to add icon images to your sprite
+            //     "text-field": ["get", "name"],
+            //     "text-font": ["Open Sans Regular"],
+            //     "text-offset": [0, 0.6],
+            //     "text-anchor": "top",
+            //     "text-size": 12,
+            //     "text-allow-overlap": true,
+            //     //"text-ignore-placement": true,
+            //   },
+            //   paint: {
+            //     "text-color": "#444",
+            //     "text-halo-color": "#fff",
+            //     "text-halo-width": 1,
+            //   },
+            // },
           ],
         },
 
@@ -263,26 +268,29 @@
         zoom: 12,
       });
 
-      map.on("style.load", () => {
-        map.addLayer({
-          id: "road-labels",
-          type: "symbol",
-          source: "vector_tiles",
-          "source-layer": "osm_lines",
-          minzoom: 10,
-          maxzoom: 14,
-          layout: {
-            "text-field": ["get", "name"],
-            "text-size": 12,
-            "symbol-placement": "line",
-          },
-          paint: {
-            "text-color": "#000",
-            "text-halo-color": "#fff",
-            "text-halo-width": 1,
-          },
-        });
-      });
+      // map.on("style.load", () => {
+      //   map.addLayer({
+      //     id: "road-labels",
+      //     type: "symbol",
+      //     source: "vector_tiles",
+      //     "source-layer": "osm_lines",
+      //     minzoom: 10,
+      //     maxzoom: 14,
+      //     layout: {
+      //       "text-field": ["get", "name"],
+      //       "text-font": ["Open Sans Regular"],
+      //       "text-size": 12,
+      //       "symbol-placement": "line",
+      //       "text-allow-overlap": true,
+      //       //"text-ignore-placement": true,
+      //     },
+      //     paint: {
+      //       "text-color": "#000",
+      //       "text-halo-color": "#fff",
+      //       "text-halo-width": 1,
+      //     },
+      //   });
+      // });
     </script>
   </body>
 </html>
