@@ -1,0 +1,2244 @@
+<html lang="fa" dir="rtl" class="light" style="">
+  <head>
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
+    <script
+      type="text/javascript"
+      async=""
+      src="https://www.googletagmanager.com/gtag/js?id=G-Y4QV007ERR&amp;cx=c&amp;gtm=4e59i0"
+    ></script>
+    <script
+      async=""
+      src="https://www.googletagmanager.com/gtm.js?id=GTM-TBK4ZS5"
+    ></script>
+    <script
+      type="module"
+      crossorigin=""
+      src="/assets/polyfills-coelT5Rp.js"
+    ></script>
+
+    <title>وب اپلیکیشن اسنپ</title>
+
+    <!-- Development Config file will be generated before starting the development server-->
+
+    <script async="" src=""></script>
+
+    <script>
+      var getParams = function getParams(params) {
+        if (window.updatePWATokens) {
+          window.updatePWATokens(params);
+          return;
+        }
+        let i = 0;
+        try {
+          const parsedParams = JSON.parse(params);
+          localStorage.setItem("accessToken", parsedParams.accessToken);
+          localStorage.setItem("refreshToken", parsedParams.refreshToken);
+        } catch (err) {
+          console.error("Error in parsing params");
+        }
+        let intervalId = setInterval(function () {
+          if (window.updatePWATokens) {
+            window.updatePWATokens(params);
+            clearInterval(intervalId);
+          }
+          if (i > 100) {
+            clearInterval(intervalId);
+            if (!localStorage.getItem("accessToken")) {
+              window.location.replace("snapp://open/main");
+            }
+          }
+          i++;
+        }, 100);
+      };
+    </script>
+    <script id="config">
+      window.configuration = {
+        VITE_API: "/api",
+        VITE_API_ACKERMAN: "/api/api-ackerman",
+        VITE_API_ANALYTICS: "/api/analytics/events",
+        VITE_API_BARADUR: "/api/baradur",
+        VITE_API_BASE: "/api/api-base",
+        VITE_API_BIFROST: "https://api.snappmaps.ir/client-route/v1",
+        VITE_API_BLACKGATE: "/api/api-blackgate",
+        VITE_API_CAPTCHA: "/api/captcha",
+        VITE_API_EVENTS: "/api/api-events",
+        VITE_API_GABRIEL: "/api/api-gabriel",
+        VITE_API_GUARDIAN: "/api/guardian",
+        VITE_API_HELIOGRAPH: "/api/api-heliograph/call",
+        VITE_API_HOME: "/api/api-home",
+        VITE_API_LOCATIONS: "https://locations.snapp.site",
+        VITE_API_LOYALTY: "/api/api-loyalty",
+        VITE_API_MAP: "https://api.snappmaps.ir/client-search/v1",
+        VITE_API_MAP_ANALYTICS: "https://api.snappmaps.ir/address-analytics/v1",
+        VITE_API_MOKHLES: "/api/mokhles",
+        VITE_API_MURCHE: "https://locations.snapp.site",
+        VITE_API_OAUTH: "/api/api-passenger-oauth",
+        VITE_API_RANJIT: "/api",
+        VITE_API_SMAPP_SHOT: "https://smappshot.snappmaps.ir",
+        VITE_API_SSO: "https://oauth2.snapp.taxi/api/v1/oauth2",
+        VITE_API_TAXI: "/api/api-taxi",
+        VITE_API_USER_AUTH: "/api/userauth-ap/passengers/api",
+        VITE_API_VILYA: "/api/vilya",
+        VITE_API_WEBAUTHN: "/api",
+        VITE_DRIVER_SIGN_UP: "https://digitalsignup.snapp.ir",
+        VITE_MAP_API_TILE_METRICS:
+          "https://tile-metrics-gatherer.apps.public.okd4.teh-1.snappcloud.io",
+        VITE_SNAPP_CLUB_URL: "https://snapp-club.snapp.ir",
+        VITE_SNAPP_PRO_API_BASE: "/api/subscription",
+        VITE_SNAPP_PRO_URL: "https://pro.snapp.taxi",
+        VITE_SUPER_APP_API_BASE: "/api/superapp",
+        VITE_SUPER_APP_API_TAPSELL: "https://api.tapsell.ir",
+        VITE_SUPPORT_EXPLANATION_FEEDBACK_URL:
+          "https://survey.porsline.ir/s/8wMUkMw",
+        VITE_SUPPORT_TICKET_FEEDBACK_URL:
+          "https://survey.porsline.ir/s/YDNmREd",
+        VITE_VOUCHER_CENTER_URL: "https://voucher-center.snapp.ir",
+      };
+      window.rawConfiguration = {
+        VITE_API: "/api",
+        VITE_API_ACKERMAN: "/api/api-ackerman",
+        VITE_API_ANALYTICS: "/api/analytics/events",
+        VITE_API_BARADUR: "/api/baradur",
+        VITE_API_BASE: "/api/api-base",
+        VITE_API_BIFROST: "https://api.snappmaps.ir/client-route/v1",
+        VITE_API_BLACKGATE: "/api/api-blackgate",
+        VITE_API_CAPTCHA: "/api/captcha",
+        VITE_API_EVENTS: "/api/api-events",
+        VITE_API_GABRIEL: "/api/api-gabriel",
+        VITE_API_GUARDIAN: "/api/guardian",
+        VITE_API_HELIOGRAPH: "/api/api-heliograph/call",
+        VITE_API_HOME: "/api/api-home",
+        VITE_API_LOCATIONS: "https://locations.snapp.site",
+        VITE_API_LOYALTY: "/api/api-loyalty",
+        VITE_API_MAP: "https://api.snappmaps.ir/client-search/v1",
+        VITE_API_MAP_ANALYTICS: "https://api.snappmaps.ir/address-analytics/v1",
+        VITE_API_MOKHLES: "/api/mokhles",
+        VITE_API_MURCHE: "https://locations.snapp.site",
+        VITE_API_OAUTH: "/api/api-passenger-oauth",
+        VITE_API_RANJIT: "/api",
+        VITE_API_SMAPP_SHOT: "https://smappshot.snappmaps.ir",
+        VITE_API_SSO: "https://oauth2.snapp.taxi/api/v1/oauth2",
+        VITE_API_TAXI: "/api/api-taxi",
+        VITE_API_USER_AUTH: "/api/userauth-ap/passengers/api",
+        VITE_API_VILYA: "/api/vilya",
+        VITE_API_WEBAUTHN: "/api",
+        VITE_DRIVER_SIGN_UP: "https://digitalsignup.snapp.ir",
+        VITE_MAP_API_TILE_METRICS:
+          "https://tile-metrics-gatherer.apps.public.okd4.teh-1.snappcloud.io",
+        VITE_SNAPP_CLUB_URL: "https://snapp-club.snapp.ir",
+        VITE_SNAPP_PRO_API_BASE: "/api/subscription",
+        VITE_SNAPP_PRO_URL: "https://pro.snapp.taxi",
+        VITE_SUPER_APP_API_BASE: "/api/superapp",
+        VITE_SUPER_APP_API_TAPSELL: "https://api.tapsell.ir",
+        VITE_SUPPORT_EXPLANATION_FEEDBACK_URL:
+          "https://survey.porsline.ir/s/8wMUkMw",
+        VITE_SUPPORT_TICKET_FEEDBACK_URL:
+          "https://survey.porsline.ir/s/YDNmREd",
+        VITE_VOUCHER_CENTER_URL: "https://voucher-center.snapp.ir",
+      };
+    </script>
+
+    <!-- Preconnect and DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://passenger-pwa-cdn.snapp.ir" />
+    <meta
+      name="description"
+      content="وب‌اپلیکیشن اسنپ: درخواست آنلاین خودرو و پیک موتوری با مرورگر موبایل یا رایانه بدون نیاز به نصب اپلیکیشن"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover"
+    />
+
+    <!-- Webengage script, deferred loading -->
+    <script
+      type="text/javascript"
+      async=""
+      src="https://ssl.widgets.webengage.com/js/webengage-min-v-6.0.js"
+    ></script>
+    <script defer="" id="_webengage_script_tag" type="text/javascript">
+      var webengage;
+      !(function (w, e, b, n, g) {
+        function o(e, t) {
+          e[t[t.length - 1]] = function () {
+            r.__queue.push([t.join("."), arguments]);
+          };
+        }
+        var i,
+          s,
+          r = w[b],
+          z = " ",
+          l = "init options track screen onReady".split(z),
+          a =
+            "webPersonalization feedback survey notification notificationInbox".split(
+              z
+            ),
+          c = "options render clear abort".split(z),
+          p = "Prepare Render Open Close Submit Complete View Click".split(z),
+          u = "identify login logout setAttribute".split(z);
+        if (!r || !r.__v) {
+          for (
+            w[b] = r = { __queue: [], __v: "6.0", user: {} }, i = 0;
+            i < l.length;
+            i++
+          )
+            o(r, [l[i]]);
+          for (i = 0; i < a.length; i++) {
+            for (r[a[i]] = {}, s = 0; s < c.length; s++)
+              o(r[a[i]], [a[i], c[s]]);
+            for (s = 0; s < p.length; s++) o(r[a[i]], [a[i], "on" + p[s]]);
+          }
+          for (i = 0; i < u.length; i++) o(r.user, ["user", u[i]]);
+          setTimeout(function () {
+            var f = e.createElement("script"),
+              d = e.getElementById("_webengage_script_tag");
+            (f.type = "text/javascript"),
+              (f.async = !0),
+              (f.src =
+                ("https:" == e.location.protocol
+                  ? "https://ssl.widgets.webengage.com"
+                  : "http://cdn.widgets.webengage.com") +
+                "/js/webengage-min-v-6.0.js"),
+              d.parentNode.insertBefore(f, d);
+          });
+        }
+      })(window, document, "webengage");
+
+      /* Web Engage License */
+      webengage.init("~47b6574d");
+      webengage.options("webpush.registerServiceWorker", false);
+      webengage.options("safariWebPush", true);
+    </script>
+
+    <script>
+      var dataLayer = []; // The `dataLayer` is being created for using on Tag Manager
+    </script>
+
+    <!-- Google Tag Manager script, lazy load -->
+    <script>
+      (function () {
+        const internetAvailable = "true" === "true";
+        const trackingEnabled = "true" === "true";
+        const gtmEnabled = "true" === "true";
+
+        if (internetAvailable && trackingEnabled && gtmEnabled) {
+          setTimeout(() => {
+            (function (w, d, s, l, i) {
+              w[l] = w[l] || [];
+              w[l].push({
+                "gtm.start": new Date().getTime(),
+                event: "gtm.js",
+              });
+              var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != "dataLayer" ? "&l=" + l : "";
+              j.async = true;
+              j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+              f.parentNode.insertBefore(j, f);
+            })(window, document, "script", "dataLayer", "GTM-TBK4ZS5");
+          }, 2000); // Lazy load GTM after 2s
+        }
+      })();
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="theme-color" content="" />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="https://passenger-pwa-cdn.snapp.ir/logos/square-minimal-144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://passenger-pwa-cdn.snapp.ir/logos/square-minimal-180.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="192x192"
+      href="https://passenger-pwa-cdn.snapp.ir/logos/square-minimal-192.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="384x384"
+      href="https://passenger-pwa-cdn.snapp.ir/logos/square-minimal-384.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="512x512"
+      href="https://passenger-pwa-cdn.snapp.ir/logos/square-minimal-512.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="https://passenger-pwa-cdn.snapp.ir/logos/square-minimal-192.png"
+    />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="/manifest.json?v=v18.26.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <link
+      href="https://passenger-pwa-cdn.snapp.ir/backgrounds/splash/iphone5-splash.png"
+      media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
+      rel="apple-touch-startup-image"
+    />
+    <link
+      href="https://passenger-pwa-cdn.snapp.ir/backgrounds/splash/iphone6-splash.png"
+      media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
+      rel="apple-touch-startup-image"
+    />
+    <link
+      href="https://passenger-pwa-cdn.snapp.ir/backgrounds/splash/iphoneplus-splash.png"
+      media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)"
+      rel="apple-touch-startup-image"
+    />
+    <link
+      href="https://passenger-pwa-cdn.snapp.ir/backgrounds/splash/iphonex-splash.png"
+      media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+      rel="apple-touch-startup-image"
+    />
+    <link
+      href="https://passenger-pwa-cdn.snapp.ir/backgrounds/splash/ipad-splash.png"
+      media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
+      rel="apple-touch-startup-image"
+    />
+    <link
+      href="https://passenger-pwa-cdn.snapp.ir/backgrounds/splash/ipadpro1-splash.png"
+      media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
+      rel="apple-touch-startup-image"
+    />
+    <link
+      href="https://passenger-pwa-cdn.snapp.ir/backgrounds/splash/ipadpro2-splash.png"
+      media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+      rel="apple-touch-startup-image"
+    />
+    <script>
+      if ("true") {
+        console.log("---------------- snapp PWA ----------------");
+        console.log("v18.26.0");
+        console.log("-------------------------------------------");
+      }
+      window.__app = {
+        version: "v18.26.0",
+      };
+    </script>
+    <script
+      type="module"
+      crossorigin=""
+      src="/assets/index-qZqF-oI9.js"
+    ></script>
+    <link rel="stylesheet" crossorigin="" href="/assets/index-VBQqkq0W.css" />
+    <script type="module">
+      import.meta.url;
+      import("_").catch(() => 1);
+      (async function* () {})().next();
+      if (location.protocol != "file:") {
+        window.__vite_is_modern_browser = true;
+      }
+    </script>
+    <script type="module">
+      !(function () {
+        if (window.__vite_is_modern_browser) return;
+        console.warn(
+          "vite: loading legacy chunks, syntax error above and the same error below should be ignored"
+        );
+        var e = document.getElementById("vite-legacy-polyfill"),
+          n = document.createElement("script");
+        (n.src = e.src),
+          (n.onload = function () {
+            System.import(
+              document
+                .getElementById("vite-legacy-entry")
+                .getAttribute("data-src")
+            );
+          }),
+          document.body.appendChild(n);
+      })();
+    </script>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link
+      rel="modulepreload"
+      as="script"
+      crossorigin=""
+      href="/assets/index-BtDxwour.js"
+    />
+    <link
+      rel="modulepreload"
+      as="script"
+      crossorigin=""
+      href="/assets/a2hs-BMqcTVro.js"
+    />
+    <link rel="stylesheet" crossorigin="" href="/assets/index-ChKasWeF.css" />
+    <style type="text/css">
+      [data-vaul-drawer] {
+        touch-action: none;
+        will-change: transform;
+        transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+        animation-duration: 0.5s;
+        animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+      }
+      [data-vaul-drawer][data-vaul-snap-points="false"][data-vaul-drawer-direction="bottom"][data-state="open"] {
+        animation-name: slideFromBottom;
+      }
+      [data-vaul-drawer][data-vaul-snap-points="false"][data-vaul-drawer-direction="bottom"][data-state="closed"] {
+        animation-name: slideToBottom;
+      }
+      [data-vaul-drawer][data-vaul-snap-points="false"][data-vaul-drawer-direction="top"][data-state="open"] {
+        animation-name: slideFromTop;
+      }
+      [data-vaul-drawer][data-vaul-snap-points="false"][data-vaul-drawer-direction="top"][data-state="closed"] {
+        animation-name: slideToTop;
+      }
+      [data-vaul-drawer][data-vaul-snap-points="false"][data-vaul-drawer-direction="left"][data-state="open"] {
+        animation-name: slideFromLeft;
+      }
+      [data-vaul-drawer][data-vaul-snap-points="false"][data-vaul-drawer-direction="left"][data-state="closed"] {
+        animation-name: slideToLeft;
+      }
+      [data-vaul-drawer][data-vaul-snap-points="false"][data-vaul-drawer-direction="right"][data-state="open"] {
+        animation-name: slideFromRight;
+      }
+      [data-vaul-drawer][data-vaul-snap-points="false"][data-vaul-drawer-direction="right"][data-state="closed"] {
+        animation-name: slideToRight;
+      }
+      [data-vaul-drawer][data-vaul-snap-points="true"][data-vaul-drawer-direction="bottom"] {
+        transform: translate3d(0, var(--initial-transform, 100%), 0);
+      }
+      [data-vaul-drawer][data-vaul-snap-points="true"][data-vaul-drawer-direction="top"] {
+        transform: translate3d(0, calc(var(--initial-transform, 100%) * -1), 0);
+      }
+      [data-vaul-drawer][data-vaul-snap-points="true"][data-vaul-drawer-direction="left"] {
+        transform: translate3d(calc(var(--initial-transform, 100%) * -1), 0, 0);
+      }
+      [data-vaul-drawer][data-vaul-snap-points="true"][data-vaul-drawer-direction="right"] {
+        transform: translate3d(var(--initial-transform, 100%), 0, 0);
+      }
+      [data-vaul-drawer][data-vaul-delayed-snap-points="true"][data-vaul-drawer-direction="top"] {
+        transform: translate3d(0, var(--snap-point-height, 0), 0);
+      }
+      [data-vaul-drawer][data-vaul-delayed-snap-points="true"][data-vaul-drawer-direction="bottom"] {
+        transform: translate3d(0, var(--snap-point-height, 0), 0);
+      }
+      [data-vaul-drawer][data-vaul-delayed-snap-points="true"][data-vaul-drawer-direction="left"] {
+        transform: translate3d(var(--snap-point-height, 0), 0, 0);
+      }
+      [data-vaul-drawer][data-vaul-delayed-snap-points="true"][data-vaul-drawer-direction="right"] {
+        transform: translate3d(var(--snap-point-height, 0), 0, 0);
+      }
+      [data-vaul-overlay][data-vaul-snap-points="false"] {
+        animation-duration: 0.5s;
+        animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+      }
+      [data-vaul-overlay][data-vaul-snap-points="false"][data-state="open"] {
+        animation-name: fadeIn;
+      }
+      [data-vaul-overlay][data-state="closed"] {
+        animation-name: fadeOut;
+      }
+      [data-vaul-animate="false"] {
+        animation: none !important;
+      }
+      [data-vaul-overlay][data-vaul-snap-points="true"] {
+        opacity: 0;
+        transition: opacity 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+      }
+      [data-vaul-overlay][data-vaul-snap-points="true"] {
+        opacity: 1;
+      }
+      [data-vaul-drawer]:not([data-vaul-custom-container="true"])::after {
+        content: "";
+        position: absolute;
+        background: inherit;
+        background-color: inherit;
+      }
+      [data-vaul-drawer][data-vaul-drawer-direction="top"]::after {
+        top: initial;
+        bottom: 100%;
+        left: 0;
+        right: 0;
+        height: 200%;
+      }
+      [data-vaul-drawer][data-vaul-drawer-direction="bottom"]::after {
+        top: 100%;
+        bottom: initial;
+        left: 0;
+        right: 0;
+        height: 200%;
+      }
+      [data-vaul-drawer][data-vaul-drawer-direction="left"]::after {
+        left: initial;
+        right: 100%;
+        top: 0;
+        bottom: 0;
+        width: 200%;
+      }
+      [data-vaul-drawer][data-vaul-drawer-direction="right"]::after {
+        left: 100%;
+        right: initial;
+        top: 0;
+        bottom: 0;
+        width: 200%;
+      }
+      [data-vaul-overlay][data-vaul-snap-points="true"]:not(
+          [data-vaul-snap-points-overlay="true"]
+        ):not([data-state="closed"]) {
+        opacity: 0;
+      }
+      [data-vaul-overlay][data-vaul-snap-points-overlay="true"] {
+        opacity: 1;
+      }
+      [data-vaul-handle] {
+        display: block;
+        position: relative;
+        opacity: 0.7;
+        background: #e2e2e4;
+        margin-left: auto;
+        margin-right: auto;
+        height: 5px;
+        width: 32px;
+        border-radius: 1rem;
+        touch-action: pan-y;
+      }
+      [data-vaul-handle]:active,
+      [data-vaul-handle]:hover {
+        opacity: 1;
+      }
+      [data-vaul-handle-hitarea] {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: max(100%, 2.75rem);
+        height: max(100%, 2.75rem);
+        touch-action: inherit;
+      }
+      @media (hover: hover) and (pointer: fine) {
+        [data-vaul-drawer] {
+          user-select: none;
+        }
+      }
+      @media (pointer: fine) {
+        [data-vaul-handle-hitarea]: {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes fadeOut {
+        to {
+          opacity: 0;
+        }
+      }
+      @keyframes slideFromBottom {
+        from {
+          transform: translate3d(0, var(--initial-transform, 100%), 0);
+        }
+        to {
+          transform: translate3d(0, 0, 0);
+        }
+      }
+      @keyframes slideToBottom {
+        to {
+          transform: translate3d(0, var(--initial-transform, 100%), 0);
+        }
+      }
+      @keyframes slideFromTop {
+        from {
+          transform: translate3d(
+            0,
+            calc(var(--initial-transform, 100%) * -1),
+            0
+          );
+        }
+        to {
+          transform: translate3d(0, 0, 0);
+        }
+      }
+      @keyframes slideToTop {
+        to {
+          transform: translate3d(
+            0,
+            calc(var(--initial-transform, 100%) * -1),
+            0
+          );
+        }
+      }
+      @keyframes slideFromLeft {
+        from {
+          transform: translate3d(
+            calc(var(--initial-transform, 100%) * -1),
+            0,
+            0
+          );
+        }
+        to {
+          transform: translate3d(0, 0, 0);
+        }
+      }
+      @keyframes slideToLeft {
+        to {
+          transform: translate3d(
+            calc(var(--initial-transform, 100%) * -1),
+            0,
+            0
+          );
+        }
+      }
+      @keyframes slideFromRight {
+        from {
+          transform: translate3d(var(--initial-transform, 100%), 0, 0);
+        }
+        to {
+          transform: translate3d(0, 0, 0);
+        }
+      }
+      @keyframes slideToRight {
+        to {
+          transform: translate3d(var(--initial-transform, 100%), 0, 0);
+        }
+      }
+    </style>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      id="__MAP_CSS_STYLE_ID__MAPBOX"
+      href="/static/mapbox-gl.css"
+    />
+    <script
+      src="/static/mapbox-gl.js"
+      id="__MapboxScript__"
+      defer=""
+      async=""
+      type="text/javascript"
+    ></script>
+    <style>
+      body {
+          touch-action: none;
+          overflow: hidden !important;
+          position: relative !important;
+    </style>
+  </head>
+
+  <!-- End Clarity -->
+  <body style="">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="portal"></div>
+    <div id="root" data-vaul-drawer-wrapper="">
+      <main
+        class="fBRttY lhhOCV aeKXU App"
+        style="
+          --shadow: none;
+          font-family: IRANSansXFaNum, -apple-system, BlinkMacSystemFont,
+            'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+            'Droid Sans', 'Helvetica Neue', sans-serif;
+        "
+        id="app"
+      >
+        <div
+          class="fBRttY lhhOCV aeKXU hdAwi _out_fakl1_18 _container_fakl1_2"
+          style="--shadow: none"
+          id="iframeContainer"
+        >
+          <div
+            class="fBRttY _iframeParent_fakl1_23"
+            style="--shadow: none"
+            id="iframeParent"
+          ></div>
+          <div
+            class="fBRttY jXSfKH _closeButton_fakl1_35"
+            style="--shadow: none"
+          >
+            <button
+              class="kLErfs iRqZhg fEVEmD kSmiQp legDhJ bZRhvx diIxfU bGySga cbkwRf YxQoA gGTyfw fHtGqA hFyWON wzdZp kggJWd gNnTtK hiYhnZ hkFDWP kcBKG kAorml gEislh jZawl fNAzWg foDtdn jzuiJt AxjtU fNAzVT cSEFSc"
+              type="button"
+              data-bg-surface="false"
+              data-full-width="false"
+              data-has-end-icon="false"
+              data-has-start-icon="false"
+              data-rounded="false"
+              style="position: relative"
+            >
+              <span
+                class="glXVUE kBMjl"
+                data-has-end-icon="false"
+                data-has-start-icon="false"
+                ><svg
+                  aria-hidden="true"
+                  class="xULTa xULSR eJFCxu jdmPpC cTqIgO bGySga bUyOMB kXATDT jzuiJt cHjsHT hXdUBW lmZmzR loIzcg hzRNfQ ioQnfu"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="--color: var(--hydLsW); --transform: none"
+                >
+                  <path
+                    d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                  ></path></svg></span
+              ><span
+                class="kyGdCf kiKDyH dXscgu cXjUyC cERSkX jXSfKH hWgptE qbeer ftnIQa"
+              ></span>
+            </button>
+          </div>
+          <div
+            class="fBRttY lhhOCV aeKXU jXSfKH fPSBzf eBoHjY hvBGlc dmsSMc dDCLio kgldAt gZlJMi fgUJEd llnJnG _loading_fakl1_28"
+            style="
+              --shadow: none;
+              --flex-direction: column;
+              --align-items: center;
+              --justify-content: center;
+              --flex-wrap: nowrap;
+            "
+            data-fd="column"
+            id="iframeLoading"
+          >
+            <div
+              class="fEVEmD cHjsHT kysuuU jRRzzu dimcKQ eiQTzk cWemBm jGCQxV giNZLU liKNwY fiGuyT MWFjx"
+            >
+              <div
+                class="gmSzfG"
+                data-has-color="true"
+                data-is-neutral="false"
+                style="--width: 15px; --height: 15px"
+              ></div>
+              <div
+                data-has-color="true"
+                data-is-neutral="false"
+                class="ckbbCz"
+                style="--width: 15px; --height: 15px"
+              ></div>
+              <div
+                class="ezTDWl"
+                data-has-color="true"
+                data-is-neutral="false"
+                style="--width: 15px; --height: 15px"
+              ></div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="fBRttY lhhOCV aeKXU fPSBzf eBoHjY hvBGlc dmsSMc dDCLio kbXJhR ByjZq fPPtQp hLyCCi _rotatePhoneWarning_2qf8w_2"
+          style="
+            --shadow: none;
+            --flex-direction: column;
+            --align-items: center;
+            --justify-content: center;
+            --flex-wrap: nowrap;
+          "
+          data-fd="column"
+        >
+          <img
+            alt="rotate phone"
+            class="cXjadq dmmjlu fOHDbf RjIYh boxiRw bGySga cERSkX HGaXk gMCfDa _rotatePhoneImage_2qf8w_25"
+            data-enable-events="false"
+            data-enable-user-select="false"
+            fetchpriority="auto"
+            height="280"
+            srcset="
+              https://passenger-pwa-cdn.snapp.ir/images/redesign/rotation.png?x-oss-process=image/resize,w_200/format,webp   200w,
+              https://passenger-pwa-cdn.snapp.ir/images/redesign/rotation.png?x-oss-process=image/resize,w_500/format,webp   500w,
+              https://passenger-pwa-cdn.snapp.ir/images/redesign/rotation.png?x-oss-process=image/resize,w_800/format,webp   800w,
+              https://passenger-pwa-cdn.snapp.ir/images/redesign/rotation.png?x-oss-process=image/resize,w_1200/format,webp 1200w
+            "
+            width="363"
+            style="
+              --width: 363px;
+              --height: 280px;
+              --aspect-ratio: auto 363 / 280;
+            "
+            aria-hidden="true"
+            crossorigin="anonymous"
+            src="https://passenger-pwa-cdn.snapp.ir/images/redesign/rotation.png"
+          />
+          <h6
+            data-truncate="false"
+            class="iRqZhg hzRNfQ eotddN dyZdKU eszMTe kmXign dyIPHd eKCbRu"
+            style="--color: var(--ekmXCI); --align: inherit; --decoration: none"
+          >
+            لطفاً گوشی خود را عمودی نگه دارید.
+          </h6>
+        </div>
+        <div
+          class="fBRttY lhhOCV aeKXU _page_lm55c_2 _transparent_lm55c_8"
+          style="--shadow: none"
+        >
+          <div class="_mapWrapper_1arz8_2" id="ride-map">
+            <div
+              style="
+                position: fixed;
+                height: 100%;
+                width: 100%;
+                left: 0px;
+                top: 0px;
+              "
+            >
+              <div
+                style="
+                  top: 0px;
+                  left: 0px;
+                  height: 100%;
+                  width: 100%;
+                  position: absolute;
+                  visibility: visible;
+                "
+                class="mapboxgl-map"
+              >
+                <div class="mapboxgl-canary" style="visibility: hidden"></div>
+                <div
+                  class="mapboxgl-canvas-container mapboxgl-interactive mapboxgl-touch-drag-pan mapboxgl-touch-zoom-rotate"
+                >
+                  <canvas
+                    class="mapboxgl-canvas"
+                    tabindex="0"
+                    aria-label="Map"
+                    role="region"
+                    width="1881"
+                    height="933"
+                    style="width: 1881px; height: 933px"
+                  ></canvas>
+                  <div
+                    data-pin="marker"
+                    style="
+                      max-width: 200px;
+                      pointer-events: none;
+                      z-index: 10;
+                      transform: translate(-50%, -50%)
+                        translate(940.5px, 366.5px) rotateX(0deg) rotateZ(0deg);
+                    "
+                    class="mapboxgl-marker mapboxgl-marker-anchor-center"
+                  >
+                    <div class="fBRttY" style="--shadow: none">
+                      <button
+                        class="cERSkX dcEviu fEVEmD kSmiQp iLbQFp foDtdn cbkwRf jsxjhB"
+                        type="button"
+                        data-qa-id="pin-origin"
+                      >
+                        <div
+                          class="hLsNni fEVEmD kSmiQp iobkfK cajnks dXscgu bOElhV bhQozh pVlti bleMuh gNnTtK AxiDU ivKjzZ eOPjMq kfgYcx"
+                          data-circular-icon="true"
+                          data-scale-down="false"
+                          data-show-extra-details="false"
+                        >
+                          <div
+                            data-circular-icon="true"
+                            class="gmRsOT fPSBzf kSmiQp legDhJ fzGitG ilzKXu imfYCh bAvUxM lhhOCV ebYfJ ivKjzZ crBTno"
+                          >
+                            <div
+                              class="fNCDjG fNCDkd cajnks iofMwA ivKjzZ"
+                              data-circular-icon="true"
+                            ></div>
+                          </div>
+                          <div
+                            class="fEVEmD eiletD habyXz"
+                            data-show-label="false"
+                          >
+                            <div
+                              class="jTWvec dmytER lhyiUT iXFfLP"
+                              data-show-extra-details="false"
+                            >
+                              <p
+                                data-truncate="false"
+                                class="iRqZhg hzRNfQ eotddN dyZdKU eszMTe kmXign dyIPHd sQYPD"
+                                style="
+                                  --color: var(--ekmXCI);
+                                  --align: inherit;
+                                  --decoration: none;
+                                "
+                              ></p>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="hLsNni fzByGg fzGitk cIuCKj XeAob cOjddy Axjab bYJPrM lfqyOb"
+                          data-scale-down="false"
+                        ></div>
+                        <div
+                          class="fPSBzf legDhJ kSmiQp fNDdIU ATGke CGzRu bYJPrM gUZxNP XeAob cOjddy dQFPsP eIgPEO dvDXJu QBwmR gdtQCu fsaKUk fXDyVJ"
+                          data-scale-down="false"
+                        ></div>
+                      </button>
+                    </div>
+                  </div>
+                  <div
+                    data-pin="marker"
+                    style="
+                      z-index: 1;
+                      transform: translate(-50%, -50%) translate(103px, -2719px)
+                        rotateX(0deg) rotateZ(0deg);
+                    "
+                    class="mapboxgl-marker mapboxgl-marker-anchor-center"
+                  >
+                    <div
+                      class="fBRttY jTWvec fPSBzf eBoHjY hvBGlc dmsSMc dDCLio kgldAt gZlJMi fgUJEd llnJnG"
+                      style="
+                        --shadow: none;
+                        --flex-direction: column;
+                        --align-items: center;
+                        --justify-content: center;
+                        --flex-wrap: nowrap;
+                      "
+                      data-fd="column"
+                    >
+                      <div class="fBRttY jXSfKH" style="--shadow: none">
+                        <svg
+                          fill="none"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <rect
+                            fill="white"
+                            height="24"
+                            rx="12"
+                            width="24"
+                          ></rect>
+                          <rect
+                            fill="var(--fNluSm)"
+                            height="21"
+                            rx="10.5"
+                            width="21"
+                            x="1.5"
+                            y="1.5"
+                          ></rect>
+                          <g clip-path="url(#clip0_2002_1382)">
+                            <path
+                              d="M12 14.635L15.09 16.5L14.27 12.985L17 10.62L13.405 10.315L12 7L10.595 10.315L7 10.62L9.73 12.985L8.91 16.5L12 14.635Z"
+                              fill="white"
+                            ></path>
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_2002_1382">
+                              <rect
+                                fill="white"
+                                height="12"
+                                transform="translate(6 6)"
+                                width="12"
+                              ></rect>
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    data-pin="marker"
+                    style="
+                      z-index: 1;
+                      transform: translate(-50%, -50%)
+                        translate(3944px, -2633px) rotateX(0deg) rotateZ(0deg);
+                    "
+                    class="mapboxgl-marker mapboxgl-marker-anchor-center"
+                  >
+                    <div
+                      class="fBRttY jTWvec fPSBzf eBoHjY hvBGlc dmsSMc dDCLio kgldAt gZlJMi fgUJEd llnJnG"
+                      style="
+                        --shadow: none;
+                        --flex-direction: column;
+                        --align-items: center;
+                        --justify-content: center;
+                        --flex-wrap: nowrap;
+                      "
+                      data-fd="column"
+                    >
+                      <div class="fBRttY jXSfKH" style="--shadow: none">
+                        <svg
+                          fill="none"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <rect
+                            fill="white"
+                            height="24"
+                            rx="12"
+                            width="24"
+                          ></rect>
+                          <rect
+                            fill="var(--fNluSm)"
+                            height="21"
+                            rx="10.5"
+                            width="21"
+                            x="1.5"
+                            y="1.5"
+                          ></rect>
+                          <g clip-path="url(#clip0_2002_1382)">
+                            <path
+                              d="M12 14.635L15.09 16.5L14.27 12.985L17 10.62L13.405 10.315L12 7L10.595 10.315L7 10.62L9.73 12.985L8.91 16.5L12 14.635Z"
+                              fill="white"
+                            ></path>
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_2002_1382">
+                              <rect
+                                fill="white"
+                                height="12"
+                                transform="translate(6 6)"
+                                width="12"
+                              ></rect>
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    data-pin="marker"
+                    style="
+                      z-index: 1;
+                      transform: translate(-50%, -50%) translate(4072px, 344px)
+                        rotateX(0deg) rotateZ(0deg);
+                    "
+                    class="mapboxgl-marker mapboxgl-marker-anchor-center"
+                  >
+                    <div
+                      class="fBRttY jTWvec fPSBzf eBoHjY hvBGlc dmsSMc dDCLio kgldAt gZlJMi fgUJEd llnJnG"
+                      style="
+                        --shadow: none;
+                        --flex-direction: column;
+                        --align-items: center;
+                        --justify-content: center;
+                        --flex-wrap: nowrap;
+                      "
+                      data-fd="column"
+                    >
+                      <div class="fBRttY jXSfKH" style="--shadow: none">
+                        <svg
+                          fill="none"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <rect
+                            fill="white"
+                            height="24"
+                            rx="12"
+                            width="24"
+                          ></rect>
+                          <rect
+                            fill="var(--gWapdh)"
+                            height="21"
+                            rx="10.5"
+                            width="21"
+                            x="1.5"
+                            y="1.5"
+                          ></rect>
+                          <path
+                            clip-rule="evenodd"
+                            d="M11.9992 7.60001C13.0607 7.60001 14.7492 8.37001 14.7492 10.4325C14.7492 11.6205 13.8032 13.001 11.9992 14.4586C10.1952 13.001 9.24918 11.615 9.24918 10.4325C9.24918 8.37001 10.9377 7.60001 11.9992 7.60001ZM11.9992 6.5C10.2007 6.5 8.14917 7.85301 8.14917 10.4325C8.14917 12.1485 9.43068 13.958 11.9992 15.8501C14.5677 13.958 15.8492 12.1485 15.8492 10.4325C15.8492 7.85301 13.7977 6.5 11.9992 6.5ZM11.5591 11.0424L11.5709 8.69948H12.3959L12.3841 10.5749L13.9194 11.5705L13.4959 12.2745L11.5591 11.0424ZM15.8495 16.4H8.14948V17.5H15.8495V16.4Z"
+                            fill="white"
+                            fill-rule="evenodd"
+                          ></path>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    data-pin="marker"
+                    style="
+                      z-index: 1;
+                      transform: translate(-50%, -50%)
+                        translate(4199px, -1109px) rotateX(0deg) rotateZ(0deg);
+                    "
+                    class="mapboxgl-marker mapboxgl-marker-anchor-center"
+                  >
+                    <div
+                      class="fBRttY jTWvec fPSBzf eBoHjY hvBGlc dmsSMc dDCLio kgldAt gZlJMi fgUJEd llnJnG"
+                      style="
+                        --shadow: none;
+                        --flex-direction: column;
+                        --align-items: center;
+                        --justify-content: center;
+                        --flex-wrap: nowrap;
+                      "
+                      data-fd="column"
+                    >
+                      <div class="fBRttY jXSfKH" style="--shadow: none">
+                        <svg
+                          fill="none"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <rect
+                            fill="white"
+                            height="24"
+                            rx="12"
+                            width="24"
+                          ></rect>
+                          <rect
+                            fill="var(--gWapdh)"
+                            height="21"
+                            rx="10.5"
+                            width="21"
+                            x="1.5"
+                            y="1.5"
+                          ></rect>
+                          <path
+                            clip-rule="evenodd"
+                            d="M11.9992 7.60001C13.0607 7.60001 14.7492 8.37001 14.7492 10.4325C14.7492 11.6205 13.8032 13.001 11.9992 14.4586C10.1952 13.001 9.24918 11.615 9.24918 10.4325C9.24918 8.37001 10.9377 7.60001 11.9992 7.60001ZM11.9992 6.5C10.2007 6.5 8.14917 7.85301 8.14917 10.4325C8.14917 12.1485 9.43068 13.958 11.9992 15.8501C14.5677 13.958 15.8492 12.1485 15.8492 10.4325C15.8492 7.85301 13.7977 6.5 11.9992 6.5ZM11.5591 11.0424L11.5709 8.69948H12.3959L12.3841 10.5749L13.9194 11.5705L13.4959 12.2745L11.5591 11.0424ZM15.8495 16.4H8.14948V17.5H15.8495V16.4Z"
+                            fill="white"
+                            fill-rule="evenodd"
+                          ></path>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    data-pin="marker"
+                    style="
+                      z-index: 0;
+                      transform: translate(-50%, -50%) translate(917px, 364px)
+                        rotateX(0deg) rotateZ(243deg);
+                    "
+                    class="mapboxgl-marker mapboxgl-marker-anchor-center"
+                  >
+                    <img
+                      alt="آیکون راننده"
+                      crossorigin="anonymous"
+                      height="50"
+                      src="https://passenger-pwa-cdn.snapp.ir/images/map-service-types/1.png"
+                      width="50"
+                    />
+                  </div>
+                  <div
+                    data-pin="marker"
+                    style="
+                      z-index: 0;
+                      transform: translate(-50%, -50%) translate(985px, 370px)
+                        rotateX(0deg) rotateZ(284deg);
+                    "
+                    class="mapboxgl-marker mapboxgl-marker-anchor-center"
+                  >
+                    <img
+                      alt="آیکون راننده"
+                      crossorigin="anonymous"
+                      height="50"
+                      src="https://passenger-pwa-cdn.snapp.ir/images/map-service-types/1.png"
+                      width="50"
+                    />
+                  </div>
+                  <div
+                    data-pin="marker"
+                    style="
+                      z-index: 0;
+                      transform: translate(-50%, -50%) translate(879px, 371px)
+                        rotateX(0deg) rotateZ(257deg);
+                    "
+                    class="mapboxgl-marker mapboxgl-marker-anchor-center"
+                  >
+                    <img
+                      alt="آیکون راننده"
+                      crossorigin="anonymous"
+                      height="50"
+                      src="https://passenger-pwa-cdn.snapp.ir/images/map-service-types/1.png"
+                      width="50"
+                    />
+                  </div>
+                  <div
+                    data-pin="marker"
+                    style="
+                      z-index: 0;
+                      transform: translate(-50%, -50%) translate(1011px, 381px)
+                        rotateX(0deg) rotateZ(305deg);
+                    "
+                    class="mapboxgl-marker mapboxgl-marker-anchor-center"
+                  >
+                    <img
+                      alt="آیکون راننده"
+                      crossorigin="anonymous"
+                      height="50"
+                      src="https://passenger-pwa-cdn.snapp.ir/images/map-service-types/1.png"
+                      width="50"
+                    />
+                  </div>
+                  <div
+                    data-pin="marker"
+                    style="
+                      z-index: 0;
+                      transform: translate(-50%, -50%) translate(883px, 484px)
+                        rotateX(0deg) rotateZ(97deg);
+                    "
+                    class="mapboxgl-marker mapboxgl-marker-anchor-center"
+                  >
+                    <img
+                      alt="آیکون راننده"
+                      crossorigin="anonymous"
+                      height="50"
+                      src="https://passenger-pwa-cdn.snapp.ir/images/map-service-types/1.png"
+                      width="50"
+                    />
+                  </div>
+                  <div
+                    data-pin="marker"
+                    style="
+                      z-index: 0;
+                      transform: translate(-50%, -50%) translate(1044px, 411px)
+                        rotateX(0deg) rotateZ(298deg);
+                    "
+                    class="mapboxgl-marker mapboxgl-marker-anchor-center"
+                  >
+                    <img
+                      alt="آیکون راننده"
+                      crossorigin="anonymous"
+                      height="50"
+                      src="https://passenger-pwa-cdn.snapp.ir/images/map-service-types/1.png"
+                      width="50"
+                    />
+                  </div>
+                  <div
+                    data-pin="marker"
+                    style="
+                      z-index: 0;
+                      transform: translate(-50%, -50%) translate(964px, 527px)
+                        rotateX(0deg) rotateZ(358deg);
+                    "
+                    class="mapboxgl-marker mapboxgl-marker-anchor-center"
+                  >
+                    <img
+                      alt="آیکون راننده"
+                      crossorigin="anonymous"
+                      height="50"
+                      src="https://passenger-pwa-cdn.snapp.ir/images/map-service-types/1.png"
+                      width="50"
+                    />
+                  </div>
+                  <div
+                    data-pin="marker"
+                    style="
+                      z-index: 0;
+                      transform: translate(-50%, -50%) translate(1001px, 306px)
+                        rotateX(0deg) rotateZ(290deg);
+                    "
+                    class="mapboxgl-marker mapboxgl-marker-anchor-center"
+                  >
+                    <img
+                      alt="آیکون راننده"
+                      crossorigin="anonymous"
+                      height="50"
+                      src="https://passenger-pwa-cdn.snapp.ir/images/map-service-types/1.png"
+                      width="50"
+                    />
+                  </div>
+                  <div
+                    data-pin="marker"
+                    style="
+                      z-index: 0;
+                      transform: translate(-50%, -50%) translate(865px, 310px)
+                        rotateX(0deg) rotateZ(247deg);
+                    "
+                    class="mapboxgl-marker mapboxgl-marker-anchor-center"
+                  >
+                    <img
+                      alt="آیکون راننده"
+                      crossorigin="anonymous"
+                      height="50"
+                      src="https://passenger-pwa-cdn.snapp.ir/images/map-service-types/1.png"
+                      width="50"
+                    />
+                  </div>
+                  <div
+                    data-pin="marker"
+                    style="
+                      z-index: 0;
+                      transform: translate(-50%, -50%) translate(1017px, 535px)
+                        rotateX(0deg) rotateZ(66deg);
+                    "
+                    class="mapboxgl-marker mapboxgl-marker-anchor-center"
+                  >
+                    <img
+                      alt="آیکون راننده"
+                      crossorigin="anonymous"
+                      height="50"
+                      src="https://passenger-pwa-cdn.snapp.ir/images/map-service-types/1.png"
+                      width="50"
+                    />
+                  </div>
+                </div>
+                <div class="mapboxgl-control-container">
+                  <div class="mapboxgl-ctrl-top-left"></div>
+                  <div class="mapboxgl-ctrl-top-right"></div>
+                  <div class="mapboxgl-ctrl-bottom-left">
+                    <div class="mapboxgl-ctrl" style="display: none">
+                      <a
+                        class="mapboxgl-ctrl-logo"
+                        target="_blank"
+                        rel="noopener nofollow"
+                        href="https://www.mapbox.com/"
+                        aria-label="Mapbox logo"
+                      ></a>
+                    </div>
+                  </div>
+                  <div class="mapboxgl-ctrl-bottom-right"></div>
+                </div>
+              </div>
+            </div>
+            <div data-pin="container"></div>
+            <div data-pin="container"></div>
+            <div data-pin="container"></div>
+            <div data-pin="container"></div>
+            <div data-pin="container"></div>
+            <div data-pin="container"></div>
+            <div data-pin="container"></div>
+            <div data-pin="container"></div>
+            <div data-pin="container"></div>
+            <div data-pin="container"></div>
+            <div data-pin="container"></div>
+            <div data-pin="container"></div>
+            <div data-pin="container"></div>
+            <div data-pin="container"></div>
+            <div data-pin="container"></div>
+          </div>
+          <div
+            class="fBRttY xNKZo dOmOJy fPSBzf eBoHjY hvBGlc dmsSMc dDCLio kgldAt gZlJMi fgUJEd llnJnG"
+            style="
+              --shadow: none;
+              --flex-direction: row;
+              --align-items: center;
+              --justify-content: space-between;
+              --flex-wrap: nowrap;
+            "
+            data-fd="row"
+          >
+            <div class="jTWvec">
+              <div class="jXSfKH">
+                <button
+                  class="kLErfs iRqZhg fEVEmD kSmiQp dNnfaK bZRhvx diIxfU bGySga cbkwRf YxQoA gGTyfw fdBcIH fHtGqA fNAzVT hALmUS dXscgu hNFzJc kAGhDV ecjTtx lhhOCV gNnTtK IhdRf izpzur dzLZqd xEQPf fNAzWg aeKXU"
+                  type="button"
+                  data-rounded="true"
+                  aria-label="صفحه اصلی"
+                  data-qa-id="goToSupperAppButton"
+                  style="position: relative; --text-color: var(--gWapdh)"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="xULTa xULSR eJFCxu jdmPpC cTqIgO bGySga bUyOMB kXATDT jzuiJt cHjsHT hXdUBW lmZmzR loIzcg hzRNfQ jweaoN"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style="--color: inherit; --transform: none"
+                  >
+                    <path
+                      d="m12 5.69 5 4.5V18h-2v-6H9v6H7v-7.81l5-4.5M12 3 2 12h3v8h6v-6h2v6h6v-8h3L12 3z"
+                    ></path></svg
+                  ><span
+                    class="kyGdCf kiKDyH dXscgu cXjUyC cERSkX jXSfKH hWgptE qbeer ftnIQa"
+                  ></span>
+                </button>
+              </div>
+              <div class="kLErfs iRqZhg dcJAKS xEQPf fNAzWg">
+                <svg
+                  aria-hidden="true"
+                  class="xULTa xULSR eJFCxu jdmPpC cTqIgO bGySga bUyOMB kXATDT jzuiJt cHjsHT hXdUBW lmZmzR loIzcg hzRNfQ jweaoN"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="--color: inherit; --transform: none"
+                >
+                  <path
+                    d="m12 5.69 5 4.5V18h-2v-6H9v6H7v-7.81l5-4.5M12 3 2 12h3v8h6v-6h2v6h6v-8h3L12 3z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div class="fBRttY" style="--shadow: none">
+              <button
+                class="kLErfs iRqZhg fEVEmD kSmiQp legDhJ bZRhvx diIxfU bGySga cbkwRf YxQoA gGTyfw fHtGqA gyfUVG jXlZsK gGiwSW xNKWM ftRxTS gNnTtK hiYhnZ hkFDWP kcBKG kAorml IYebL hCNiFg cuqXez fNAzWg cajnks iJsDRH cSEFSc"
+                type="button"
+                data-bg-surface="false"
+                data-full-width="true"
+                data-has-end-icon="true"
+                data-has-start-icon="false"
+                data-rounded="true"
+                style="position: relative"
+              >
+                <span
+                  class="glXVUE kBMjl"
+                  data-has-end-icon="true"
+                  data-has-start-icon="false"
+                  >برای خودم</span
+                ><svg
+                  aria-hidden="true"
+                  class="xULTa xULSR eJFCxu jdmPpC cTqIgO bGySga bUyOMB kXATDT jzuiJt cHjsHT hXdUBW lmZmzR loIzcg hzRNfQ jweaoN"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="--color: var(--hFZWLg); --transform: none"
+                >
+                  <path
+                    d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                  ></path></svg
+                ><span
+                  class="kyGdCf kiKDyH dXscgu cXjUyC cERSkX jXSfKH hWgptE qbeer ftnIQa"
+                ></span>
+              </button>
+            </div>
+            <div
+              class="fBRttY jTWvec _container_rjaop_7"
+              style="--shadow: none"
+            >
+              <div class="jTWvec">
+                <div class="jXSfKH">
+                  <button
+                    class="kLErfs iRqZhg fEVEmD kSmiQp dNnfaK bZRhvx diIxfU bGySga cbkwRf YxQoA gGTyfw fdBcIH fHtGqA fNAzVT hALmUS dXscgu hNFzJc kAGhDV ecjTtx lhhOCV gNnTtK IhdRf izpzur dzLZqd xEQPf fNAzWg aeKXU"
+                    type="button"
+                    data-rounded="true"
+                    aria-label="منوی اصلی"
+                    data-qa-id="mainMenuButton"
+                    style="position: relative; --text-color: var(--gWapdh)"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="xULTa xULSR eJFCxu jdmPpC cTqIgO bGySga bUyOMB kXATDT jzuiJt cHjsHT hXdUBW lmZmzR loIzcg hzRNfQ jweaoN"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="--color: inherit; --transform: none"
+                    >
+                      <path
+                        d="M12 5.9c1.16 0 2.1.94 2.1 2.1s-.94 2.1-2.1 2.1S9.9 9.16 9.9 8s.94-2.1 2.1-2.1m0 9c2.97 0 6.1 1.46 6.1 2.1v1.1H5.9V17c0-.64 3.13-2.1 6.1-2.1M12 4C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 9c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"
+                      ></path></svg
+                    ><span
+                      class="kyGdCf kiKDyH dXscgu cXjUyC cERSkX jXSfKH hWgptE qbeer ftnIQa"
+                    ></span>
+                  </button>
+                </div>
+                <div class="kLErfs iRqZhg dcJAKS xEQPf fNAzWg">
+                  <svg
+                    aria-hidden="true"
+                    class="xULTa xULSR eJFCxu jdmPpC cTqIgO bGySga bUyOMB kXATDT jzuiJt cHjsHT hXdUBW lmZmzR loIzcg hzRNfQ jweaoN"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style="--color: inherit; --transform: none"
+                  >
+                    <path
+                      d="M12 5.9c1.16 0 2.1.94 2.1 2.1s-.94 2.1-2.1 2.1S9.9 9.16 9.9 8s.94-2.1 2.1-2.1m0 9c2.97 0 6.1 1.46 6.1 2.1v1.1H5.9V17c0-.64 3.13-2.1 6.1-2.1M12 4C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 9c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <footer
+            class="brMBZk hYZFkb iLaaLh xznmc ksKMhR lnopcr kyGdCf hYZFkb iLaaLh brMBZk xznmc ksKMhR lnopcr kyGdCf _container_1kk5f_2"
+            style="--shadow: none"
+            data-has-shadow="false"
+          >
+            <div
+              class="fBRttY _topFooterContainer_1kk5f_21"
+              style="--shadow: none"
+            >
+              <div
+                class="fBRttY _topFooterStackedItem_1kk5f_29 _bannerContainer_1kk5f_37"
+                style="--shadow: none"
+              >
+                <div
+                  style="
+                    touch-action: none;
+                    pointer-events: none;
+                    transform: none;
+                  "
+                ></div>
+                <div
+                  style="
+                    touch-action: none;
+                    pointer-events: none;
+                    transform: none;
+                  "
+                ></div>
+              </div>
+              <div
+                class="fBRttY _topFooterStackedItem_1kk5f_29"
+                style="--shadow: none"
+              >
+                <div
+                  class="fBRttY xNKOb xNKXh fPSBzf eBoHjY hvBGlc dmsSMc dDCLio kgldAt gZlJMi fgUJEd llnJnG"
+                  style="
+                    --shadow: none;
+                    --flex-direction: row;
+                    --align-items: flex-end;
+                    --justify-content: space-between;
+                    --flex-wrap: nowrap;
+                  "
+                  data-fd="row"
+                >
+                  <div
+                    class="fBRttY wzdYU _geolocationBox_n3ovg_3"
+                    style="--shadow: none"
+                  >
+                    <div class="jTWvec">
+                      <div class="jXSfKH">
+                        <button
+                          class="kLErfs iRqZhg fEVEmD kSmiQp dNnfaK bZRhvx diIxfU bGySga cbkwRf YxQoA gGTyfw fdBcIH fHtGqA fNAzVT hALmUS dXscgu hNFzJc kAGhDV ecjTtx lhhOCV gNnTtK IhdRf izpzur dzLZqd xEQPf fNAzWg aeKXU"
+                          type="button"
+                          data-rounded="true"
+                          aria-label="موقعیت مکانی من"
+                          data-qa-id="my-location"
+                          style="
+                            position: relative;
+                            --text-color: var(--gWapdh);
+                          "
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="xULTa xULSR eJFCxu jdmPpC cTqIgO bGySga bUyOMB kXATDT jzuiJt cHjsHT hXdUBW lmZmzR loIzcg hzRNfQ jweaoN"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                            style="--color: inherit; --transform: none"
+                          >
+                            <path
+                              d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3c-.46-4.17-3.77-7.48-7.94-7.94V1h-2v2.06C6.83 3.52 3.52 6.83 3.06 11H1v2h2.06c.46 4.17 3.77 7.48 7.94 7.94V23h2v-2.06c4.17-.46 7.48-3.77 7.94-7.94H23v-2h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"
+                            ></path></svg
+                          ><span
+                            class="kyGdCf kiKDyH dXscgu cXjUyC cERSkX jXSfKH hWgptE qbeer ftnIQa"
+                          ></span>
+                        </button>
+                      </div>
+                      <div class="kLErfs iRqZhg dcJAKS xEQPf fNAzWg">
+                        <svg
+                          aria-hidden="true"
+                          class="xULTa xULSR eJFCxu jdmPpC cTqIgO bGySga bUyOMB kXATDT jzuiJt cHjsHT hXdUBW lmZmzR loIzcg hzRNfQ jweaoN"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                          style="--color: inherit; --transform: none"
+                        >
+                          <path
+                            d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3c-.46-4.17-3.77-7.48-7.94-7.94V1h-2v2.06C6.83 3.52 3.52 6.83 3.06 11H1v2h2.06c.46 4.17 3.77 7.48 7.94 7.94V23h2v-2.06c4.17-.46 7.48-3.77 7.94-7.94H23v-2h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"
+                          ></path>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <span class="fBRttY" style="--shadow: none"
+                    ><p
+                      data-truncate="false"
+                      class="iRqZhg hzRNfQ eotddN dyZdKU eszMTe kmXign dyIPHd fBVdts"
+                      style="
+                        --color: var(--hydLsW);
+                        --align: inherit;
+                        --decoration: none;
+                      "
+                      aria-hidden="true"
+                      dir="ltr"
+                    >
+                      © Snapp
+                    </p>
+                    <p
+                      data-truncate="false"
+                      class="iRqZhg hzRNfQ eotddN dyZdKU eszMTe kmXign dyIPHd fBVdts"
+                      style="
+                        --color: var(--hydLsW);
+                        --align: inherit;
+                        --decoration: none;
+                      "
+                      aria-hidden="true"
+                      dir="ltr"
+                    >
+                      © OpenStreetMap
+                    </p></span
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              class="fBRttY _frequentBoxContainer_1kk5f_16"
+              style="--shadow: none"
+            >
+              <div class="_container_1mwjg_2" style="margin-top: -233px">
+                <div
+                  style="transform: translate3d(0px, 233px, 0px)"
+                  class="_innerContainer_1mwjg_6 cajnks cSkMUD"
+                >
+                  <div
+                    class="fBRttY lhhOCV aeKXU xYoxH fPSBzf eBoHjY hvBGlc dmsSMc dDCLio kgldAt gZlJMi fgUJEd llnJnG fvOFCk oGsmo"
+                    style="
+                      --shadow: none;
+                      --flex-direction: row;
+                      --align-items: center;
+                      --justify-content: center;
+                      --flex-wrap: nowrap;
+                    "
+                    data-fd="row"
+                    data-disable-toggle-via-gesture="true"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="xULTa xULSR eJFCxu jdmPpC cTqIgO bGySga bUyOMB kXATDT jzuiJt cHjsHT hXdUBW lmZmzR loIzcg hzRNfQ jweaoN"
+                      focusable="false"
+                      viewBox="0 0 24 8"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="
+                        --color: var(--dOSNYb);
+                        --transform: rotate(180deg);
+                      "
+                      data-disable-toggle-via-gesture="true"
+                    >
+                      <path
+                        d="M.5 5.38c0-.8.51-1.51 1.27-1.77l10.1-3.4a2 2 0 0 1 1.27 0l10.09 3.4a1.87 1.87 0 1 1-1.2 3.55l-9.19-3.13a1.06 1.06 0 0 0-.68 0L2.98 7.16A1.87 1.87 0 0 1 .5 5.38Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div
+                      class="fBRttY lhhOCV aeKXU xNKOC dOmOMa dOmOJy"
+                      style="--shadow: none"
+                      data-qa-id=""
+                    >
+                      <div
+                        class="fBRttY dbikug aeKXU xNKWM gNnTtK fPSBzf eBoHjY hvBGlc dmsSMc dDCLio kgldAt gZlJMi fgUJEd llnJnG _searchAddressInput_qyju1_2"
+                        style="
+                          --shadow: none;
+                          --flex-direction: row;
+                          --align-items: center;
+                          --justify-content: flex-start;
+                          --flex-wrap: nowrap;
+                          cursor: pointer;
+                        "
+                        data-fd="row"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="xULTa xULSR eJFCxu jdmPpC cTqIgO bGySga bUyOMB kXATDT jzuiJt cHjsHT hXdUBW lmZmzR loIzcg hzRNfQ jweaoN"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                          style="--color: var(--fNluSm); --transform: none"
+                        >
+                          <path
+                            d="M12 14C13.1046 14 14 13.1046 14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14ZM12 18C8.68629 18 6 15.3137 6 12C6 8.68629 8.68629 6 12 6C15.3137 6 18 8.68629 18 12C18 15.3137 15.3137 18 12 18Z"
+                          ></path>
+                        </svg>
+                        <h6
+                          data-truncate="true"
+                          class="iRqZhg hzRNfQ eotddN dyZdKU eszMTe kmXign dyIPHd eKCbRu _address_qyju1_7"
+                          style="
+                            --color: var(--ekmXCI);
+                            --align: inherit;
+                            --decoration: none;
+                          "
+                        >
+                          کجا هستید؟
+                        </h6>
+                        <div class="fBRttY dOmORg" style="--shadow: none">
+                          <svg
+                            aria-hidden="true"
+                            class="xULTa xULSR eJFCxu jdmPpC cTqIgO bGySga bUyOMB kXATDT jzuiJt cHjsHT hXdUBW lmZmzR loIzcg hzRNfQ jweaoN"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                            style="--color: inherit; --transform: none"
+                          >
+                            <path
+                              d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                            ></path>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="opacity: 0">
+                    <hr
+                      data-full-width="true"
+                      data-is-li="false"
+                      data-is-neutral="true"
+                      data-is-span="false"
+                      class="AxjtB jzuiJt lhhOCV MrtSM gkHgkm gnhUfG flHHIt dQMiJu buugsA kFBdcW hIVkld cSEFSc"
+                      style="--indent-size: 4rem; --divider-size: 8px"
+                    />
+                    <ul class="hgfbDa iRCHKA" role="menu" tabindex="0">
+                      <li
+                        data-has-border-bottom="false"
+                        data-large-size="false"
+                        data-small-size="false"
+                        class="gGiwSW hEzNkW fPSBzf hvBGlc corWLu wzdZU fNDlIs knjwZM iAvRAy dKvSlg QHCUy kEwHiW fcUYXI hgfbDa iRCHKA"
+                        style="
+                          position: relative;
+                          --align-items: inherit;
+                          --divider-size: 1px;
+                        "
+                      >
+                        <div
+                          class="dOmOJy fPSBzf dmDyBO dmsSMc iMYFBH"
+                          data-has-padding="true"
+                          style="--justify-content: flex-start"
+                        >
+                          <div
+                            class="fPSBzf hzRNfQ hvBGlc dmsSMc"
+                            style="
+                              --color: var(--hydLsW);
+                              --align-items: center;
+                              --justify-content: center;
+                            "
+                          >
+                            <div>
+                              <svg
+                                aria-hidden="true"
+                                class="xULTa xULSR eJFCxu jdmPpC cTqIgO bGySga bUyOMB kXATDT jzuiJt cHjsHT hXdUBW lmZmzR loIzcg hzRNfQ jweaoN"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                                style="--color: inherit; --transform: none"
+                              >
+                                <path
+                                  d="M11.9984 3.2c2.123 0 5.5 1.54 5.5 5.665 0 2.3761-1.892 5.1371-5.5 8.0521-3.608-2.915-5.5-5.687-5.5-8.052 0-4.125 3.377-5.665 5.5-5.665Zm0-2.2c-3.597 0-7.7 2.706-7.7 7.865 0 3.4321 2.563 7.0511 7.7 10.8351 5.137-3.784 7.7-7.403 7.7-10.835 0-5.159-4.103-7.8651-7.7-7.8651Zm-.8801 9.0847.0236-4.6858h1.65l-.0236 3.7508 3.0706 1.9913-.847 1.408-3.8736-2.4643ZM19.6992 20.8h-15.4V23h15.4v-2.2Z"
+                                ></path>
+                              </svg>
+                            </div>
+                          </div>
+                          <div
+                            class="fBRttY xNKXh fPSBzf eBoHjY hvBGlc dmsSMc dDCLio kgldAt gZlJMi fgUJEd llnJnG kdHsXs"
+                            style="
+                              --shadow: none;
+                              --flex-direction: column;
+                              --align-items: stretch;
+                              --justify-content: center;
+                              --flex-wrap: nowrap;
+                            "
+                            data-fd="column"
+                          >
+                            <div
+                              data-has-subtitle="true"
+                              class="cPIbUF _frequentText_ca4sl_2"
+                            >
+                              <p
+                                data-truncate="false"
+                                class="iRqZhg hzRNfQ eotddN dyZdKU eszMTe kmXign dyIPHd bnpLXb"
+                                style="
+                                  --color: var(--ekmXCI);
+                                  --align: inherit;
+                                  --decoration: none;
+                                "
+                              >
+                                انقلاب اسلامی قبل از ولی عصر، تئاترشهر
+                              </p>
+                            </div>
+                            <div
+                              data-has-subtitle="false"
+                              class="cPIbUF _frequentText_ca4sl_2"
+                            >
+                              <p
+                                data-truncate="false"
+                                class="iRqZhg hzRNfQ eotddN dyZdKU eszMTe kmXign dyIPHd ezGOxM"
+                                style="
+                                  --color: var(--hydLsW);
+                                  --align: inherit;
+                                  --decoration: none;
+                                "
+                              >
+                                تهران، فلسطین - انقلاب، انقلاب اسلامی قبل از ولی
+                                عصر، تئاترشهر
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <span
+                          class="kyGdCf kiKDyH dXscgu cXjUyC cERSkX jXSfKH hWgptE qbeer ftnIQa"
+                        ></span>
+                      </li>
+                      <hr
+                        data-full-width="false"
+                        data-is-li="false"
+                        data-is-neutral="true"
+                        data-is-span="false"
+                        class="AxjtB jzuiJt lhhOCV MrtSM gkHgkm gnhUfG flHHIt dQMiJu buugsA kFBdcW hIVkld cSEFSc"
+                        style="--indent-size: 4rem; --divider-size: 1px"
+                      />
+                      <li
+                        data-has-border-bottom="false"
+                        data-large-size="false"
+                        data-small-size="false"
+                        class="gGiwSW hEzNkW fPSBzf hvBGlc corWLu wzdZU fNDlIs knjwZM iAvRAy dKvSlg QHCUy kEwHiW fcUYXI hgfbDa iRCHKA"
+                        style="
+                          position: relative;
+                          --align-items: inherit;
+                          --divider-size: 1px;
+                        "
+                      >
+                        <div
+                          class="dOmOJy fPSBzf dmDyBO dmsSMc iMYFBH"
+                          data-has-padding="true"
+                          style="--justify-content: flex-start"
+                        >
+                          <div
+                            class="fPSBzf hzRNfQ hvBGlc dmsSMc"
+                            style="
+                              --color: var(--hydLsW);
+                              --align-items: center;
+                              --justify-content: center;
+                            "
+                          >
+                            <div>
+                              <svg
+                                aria-hidden="true"
+                                class="xULTa xULSR eJFCxu jdmPpC cTqIgO bGySga bUyOMB kXATDT jzuiJt cHjsHT hXdUBW lmZmzR loIzcg hzRNfQ jweaoN"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                                style="--color: inherit; --transform: none"
+                              >
+                                <path
+                                  d="M11.9984 3.2c2.123 0 5.5 1.54 5.5 5.665 0 2.3761-1.892 5.1371-5.5 8.0521-3.608-2.915-5.5-5.687-5.5-8.052 0-4.125 3.377-5.665 5.5-5.665Zm0-2.2c-3.597 0-7.7 2.706-7.7 7.865 0 3.4321 2.563 7.0511 7.7 10.8351 5.137-3.784 7.7-7.403 7.7-10.835 0-5.159-4.103-7.8651-7.7-7.8651Zm-.8801 9.0847.0236-4.6858h1.65l-.0236 3.7508 3.0706 1.9913-.847 1.408-3.8736-2.4643ZM19.6992 20.8h-15.4V23h15.4v-2.2Z"
+                                ></path>
+                              </svg>
+                            </div>
+                          </div>
+                          <div
+                            class="fBRttY xNKXh fPSBzf eBoHjY hvBGlc dmsSMc dDCLio kgldAt gZlJMi fgUJEd llnJnG kdHsXs"
+                            style="
+                              --shadow: none;
+                              --flex-direction: column;
+                              --align-items: stretch;
+                              --justify-content: center;
+                              --flex-wrap: nowrap;
+                            "
+                            data-fd="column"
+                          >
+                            <div
+                              data-has-subtitle="true"
+                              class="cPIbUF _frequentText_ca4sl_2"
+                            >
+                              <p
+                                data-truncate="false"
+                                class="iRqZhg hzRNfQ eotddN dyZdKU eszMTe kmXign dyIPHd bnpLXb"
+                                style="
+                                  --color: var(--ekmXCI);
+                                  --align: inherit;
+                                  --decoration: none;
+                                "
+                              >
+                                سید جمال الدین اسدآبادی قبل از سیزدهم، روسری
+                                استاتیرا
+                              </p>
+                            </div>
+                            <div
+                              data-has-subtitle="false"
+                              class="cPIbUF _frequentText_ca4sl_2"
+                            >
+                              <p
+                                data-truncate="false"
+                                class="iRqZhg hzRNfQ eotddN dyZdKU eszMTe kmXign dyIPHd ezGOxM"
+                                style="
+                                  --color: var(--hydLsW);
+                                  --align: inherit;
+                                  --decoration: none;
+                                "
+                              >
+                                تهران، جهاد، ولی عصر، سید جمال الدین اسدآبادی
+                                قبل از سیزدهم، روسری استاتیرا
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <span
+                          class="kyGdCf kiKDyH dXscgu cXjUyC cERSkX jXSfKH hWgptE qbeer ftnIQa"
+                        ></span>
+                      </li>
+                    </ul>
+                    <hr
+                      data-full-width="true"
+                      data-is-li="false"
+                      data-is-neutral="true"
+                      data-is-span="false"
+                      class="AxjtB jzuiJt lhhOCV MrtSM gkHgkm gnhUfG flHHIt dQMiJu buugsA kFBdcW hIVkld cSEFSc"
+                      style="--indent-size: 4rem; --divider-size: 8px"
+                    />
+                    <div class="fBRttY" style="--shadow: none">
+                      <div
+                        class="fBRttY lhhOCV aeKXU fPSBzf eBoHjY hvBGlc dmsSMc dDCLio kgldAt gZlJMi fgUJEd llnJnG gWzzAr bWZVMK"
+                        style="
+                          --shadow: none;
+                          --flex-direction: row;
+                          --align-items: stretch;
+                          --justify-content: flex-start;
+                          --flex-wrap: nowrap;
+                        "
+                        data-fd="row"
+                      >
+                        <button
+                          class="foDtdn"
+                          type="button"
+                          color="secondary"
+                          data-qa-id="fav-cell-button"
+                        >
+                          <div
+                            class="fBRttY dOmORJ wzegU xNKWh fPSBzf eBoHjY hvBGlc dmsSMc dDCLio kgldAt gZlJMi fgUJEd llnJnG"
+                            style="
+                              --shadow: none;
+                              --flex-direction: row;
+                              --align-items: center;
+                              --justify-content: flex-start;
+                              --flex-wrap: nowrap;
+                            "
+                            data-fd="row"
+                          >
+                            <div
+                              class="fBRttY bYJPrM fPSBzf eBoHjY hvBGlc dmsSMc dDCLio kgldAt gZlJMi fgUJEd llnJnG ukWQe fNCCcz fNCCdc"
+                              style="
+                                --shadow: none;
+                                --flex-direction: column;
+                                --align-items: center;
+                                --justify-content: center;
+                                --flex-wrap: nowrap;
+                              "
+                              data-fd="column"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                class="xULTa xULSR eJFCxu jdmPpC cTqIgO bGySga bUyOMB kXATDT jzuiJt cHjsHT hXdUBW lmZmzR loIzcg hzRNfQ jweaoN"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                                style="
+                                  --color: var(--fNluSm);
+                                  --transform: none;
+                                "
+                              >
+                                <path
+                                  d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                ></path>
+                              </svg>
+                            </div>
+                            <div
+                              class="fBRttY xEQJw kKvlAp cbkwRf"
+                              style="--shadow: none"
+                            >
+                              <span
+                                data-truncate="false"
+                                class="iRqZhg hzRNfQ eotddN dyZdKU eszMTe kmXign dyIPHd kLErfs"
+                                style="
+                                  --color: var(--ekmXCI);
+                                  --align: inherit;
+                                  --decoration: none;
+                                "
+                                >خانه</span
+                              >
+                            </div>
+                          </div></button
+                        ><button
+                          class="foDtdn"
+                          type="button"
+                          color="secondary"
+                          data-qa-id="fav-cell-button"
+                        >
+                          <div
+                            class="fBRttY dOmORJ wzegU xNKWh fPSBzf eBoHjY hvBGlc dmsSMc dDCLio kgldAt gZlJMi fgUJEd llnJnG"
+                            style="
+                              --shadow: none;
+                              --flex-direction: row;
+                              --align-items: center;
+                              --justify-content: flex-start;
+                              --flex-wrap: nowrap;
+                            "
+                            data-fd="row"
+                          >
+                            <div
+                              class="fBRttY bYJPrM fPSBzf eBoHjY hvBGlc dmsSMc dDCLio kgldAt gZlJMi fgUJEd llnJnG ukWQe fNCCcz fNCCdc"
+                              style="
+                                --shadow: none;
+                                --flex-direction: column;
+                                --align-items: center;
+                                --justify-content: center;
+                                --flex-wrap: nowrap;
+                              "
+                              data-fd="column"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                class="xULTa xULSR eJFCxu jdmPpC cTqIgO bGySga bUyOMB kXATDT jzuiJt cHjsHT hXdUBW lmZmzR loIzcg hzRNfQ jweaoN"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                                style="
+                                  --color: var(--fNluSm);
+                                  --transform: none;
+                                "
+                              >
+                                <path
+                                  d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                ></path>
+                              </svg>
+                            </div>
+                            <div
+                              class="fBRttY xEQJw kKvlAp cbkwRf"
+                              style="--shadow: none"
+                            >
+                              <span
+                                data-truncate="false"
+                                class="iRqZhg hzRNfQ eotddN dyZdKU eszMTe kmXign dyIPHd kLErfs"
+                                style="
+                                  --color: var(--ekmXCI);
+                                  --align: inherit;
+                                  --decoration: none;
+                                "
+                                >مخابرات شاهد</span
+                              >
+                            </div>
+                          </div></button
+                        ><button class="foDtdn" type="button" color="secondary">
+                          <div
+                            class="fBRttY dOmORJ wzegU xNKWh fPSBzf eBoHjY hvBGlc dmsSMc dDCLio kgldAt gZlJMi fgUJEd llnJnG"
+                            style="
+                              --shadow: none;
+                              --flex-direction: row;
+                              --align-items: center;
+                              --justify-content: flex-start;
+                              --flex-wrap: nowrap;
+                            "
+                            data-fd="row"
+                          >
+                            <div
+                              class="fBRttY bYJPrM fPSBzf eBoHjY hvBGlc dmsSMc dDCLio kgldAt gZlJMi fgUJEd llnJnG ukWQe fNCCcz fNCCdc"
+                              style="
+                                --shadow: none;
+                                --flex-direction: column;
+                                --align-items: center;
+                                --justify-content: center;
+                                --flex-wrap: nowrap;
+                              "
+                              data-fd="column"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                class="xULTa xULSR eJFCxu jdmPpC cTqIgO bGySga bUyOMB kXATDT jzuiJt cHjsHT hXdUBW lmZmzR loIzcg hzRNfQ jweaoN"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                                style="
+                                  --color: var(--fNluSm);
+                                  --transform: none;
+                                "
+                              >
+                                <path
+                                  d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+                                ></path>
+                              </svg>
+                            </div>
+                            <div
+                              class="fBRttY xEQJw kKvlAp cbkwRf"
+                              style="--shadow: none"
+                            >
+                              <span
+                                data-truncate="false"
+                                class="iRqZhg hzRNfQ eotddN dyZdKU eszMTe kmXign dyIPHd kLErfs"
+                                style="
+                                  --color: var(--ekmXCI);
+                                  --align: inherit;
+                                  --decoration: none;
+                                "
+                                >اضافه کردن</span
+                              >
+                            </div>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="_endBox_1mwjg_10" style="transform: none">
+                  <div
+                    class="fBRttY lhhOCV aeKXU xMSSC xNKZo _shadow_1tc7v_2"
+                    style="--shadow: none"
+                  >
+                    <button
+                      class="kLErfs iRqZhg fEVEmD kSmiQp legDhJ bZRhvx diIxfU bGySga cbkwRf YxQoA gGTyfw fHtGqA gyfUVG iHPqDr xNKWM ftRxTS gNnTtK hiYhnZ hkFDWP kcBKG kAorml RSmsd hEwhxV fNAzWg lhhOCV bxKtRW MWFjx"
+                      type="button"
+                      data-bg-surface="false"
+                      data-full-width="true"
+                      data-has-end-icon="false"
+                      data-has-start-icon="false"
+                      data-rounded="false"
+                      data-qa-id="confirm"
+                      style="position: relative"
+                    >
+                      <span
+                        class="glXVUE kBMjl"
+                        data-has-end-icon="false"
+                        data-has-start-icon="false"
+                        >تأیید مبدأ</span
+                      ><span
+                        class="kyGdCf kiKDyH dXscgu cXjUyC cERSkX jXSfKH hWgptE qbeer ftnIQa"
+                      ></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </main>
+    </div>
+    <script nomodule="">
+      !(function () {
+        var e = document,
+          t = e.createElement("script");
+        if (!("noModule" in t) && "onbeforeload" in t) {
+          var n = !1;
+          e.addEventListener(
+            "beforeload",
+            function (e) {
+              if (e.target === t) n = !0;
+              else if (!e.target.hasAttribute("nomodule") || !n) return;
+              e.preventDefault();
+            },
+            !0
+          ),
+            (t.type = "module"),
+            (t.src = "."),
+            e.head.appendChild(t),
+            t.remove();
+        }
+      })();
+    </script>
+    <script
+      nomodule=""
+      crossorigin=""
+      id="vite-legacy-polyfill"
+      src="/assets/polyfills-legacy-bd3sE9vI.js"
+    ></script>
+    <script
+      nomodule=""
+      crossorigin=""
+      id="vite-legacy-entry"
+      data-src="/assets/index-legacy-DaPRzw_6.js"
+    >
+      System.import(
+        document.getElementById("vite-legacy-entry").getAttribute("data-src")
+      );
+    </script>
+
+    <div style="direction: rtl">
+      <div
+        class="fBRttY hdAwi jlslCN kzJgbO cCOcnz dOOQMn"
+        style="--shadow: none"
+      >
+        <div
+          class="fBRttY jTWvec fPSBzf dJhvhl gvTxLc"
+          style="--shadow: none"
+        ></div>
+      </div>
+    </div>
+    <div style="direction: rtl"></div>
+    <div style="direction: rtl"></div>
+    <div style="direction: rtl"></div>
+    <div style="direction: rtl"></div>
+    <div style="direction: rtl"></div>
+    <webengagedata
+      ><style type="text/css">
+        #webklipper-publisher-widget-container,
+        #webklipper-publisher-widget-container * {
+          overflow: visible;
+          -webkit-box-sizing: content-box;
+          -moz-box-sizing: content-box;
+          box-sizing: content-box;
+          margin: 0;
+          padding: 0;
+          border: 0;
+          font-size: 100%;
+          font: inherit;
+          vertical-align: baseline;
+        }
+      </style>
+      <div id="webklipper-publisher-widget-container">
+        <iframe
+          title="webengage-engagement-callback-frame"
+          name="webengage-engagement-callback-frame"
+          id="webengage-engagement-callback-frame"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          style="
+            position: absolute;
+            background-color: transparent;
+            bottom: 0px;
+            right: 0px;
+            border: medium;
+            overflow: hidden;
+            visibility: hidden;
+            display: none;
+          "
+        ></iframe
+        ><iframe
+          title="_we_wk_data_store"
+          name="_we_wk_data_store"
+          id="_we_wk_data_store"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          style="
+            position: absolute;
+            background-color: transparent;
+            bottom: 0px;
+            right: 0px;
+            border: medium;
+            overflow: hidden;
+            visibility: hidden;
+            display: none;
+          "
+          src="https://z47b6574d.webengage.co/storage-frame-1.18.htm?cdn=y&amp;cbf=webengage-engagement-callback-frame&amp;lc=~47b6574d"
+        ></iframe>
+        <script
+          type="text/javascript"
+          charset="UTF-8"
+          async=""
+          src="https://c.webengage.com/upf2.js?upfc=N4IgrgDgZiBcAuAnMBTANCAVgSwCYGc5QA%2FAC1IFYA7AQwGY4BtEARhoHMaB2ANgFsQAXQC%2BGADbYAxiir4UAYQD2uFHBDEALFwBGPClw24Q4sHjUqekgEwBOLpJoAGHjdyTcUCnSs8oNFlYAHBQ2NpIUklCONFE8VrgaxiCSpkawILjaNBQoFI6BhrY0KHQ2ObgUFRp0TpHajo6q4hBqpPDwEPiwAPTdNBAQAHT4tAOD8DQAHtjdEIgoALSIeCgA%2FGDwfAD6%2BIpgiNIAvADuKNr42PAoAGQb23wouNhgfCdn%2FRAL2hvwilTXW3YYkOLAAVCwAJ4QxBcMGAyRiLY0MCggCyABUAIoALwAcpgAJJ0VGE4nyDSTXHYgCqdHxkghqOxqIhSUQMHSSXYKEUalZwiAAA%3D&amp;jsonp=_we_jsonp_global_cb_1758573404416"
+        ></script>
+        <div id="webengage-notification-inbox-container"></div></div
+    ></webengagedata>
+    <script type="text/javascript" id="" charset="">
+      (function (b, e, f, g, c, a, d) {
+        b[c] =
+          b[c] ||
+          function () {
+            (b[c].a = b[c].a || []).push(arguments);
+          };
+        b[c].l = 1 * new Date();
+        for (a = 0; a < document.scripts.length; a++)
+          if (document.scripts[a].src === g) return;
+        a = e.createElement(f);
+        d = e.getElementsByTagName(f)[0];
+        a.async = 1;
+        a.src = g;
+        d.parentNode.insertBefore(a, d);
+      })(
+        window,
+        document,
+        "script",
+        "https://mc.yandex.ru/metrika/tag.js",
+        "ym"
+      );
+      ym(94212660, "init", {
+        clickmap: !0,
+        trackLinks: !0,
+        accurateTrackBounce: !0,
+      });
+    </script>
+    <noscript
+      ><div>
+        <img
+          src="https://mc.yandex.ru/watch/94212660"
+          style="position: absolute; left: -9999px"
+          alt=""
+        /></div
+    ></noscript>
+    <script src="moz-extension://6fe4c48f-82f6-4d06-bd5d-ef9c7dadf969/js/js.js"></script>
+  </body>
+</html>

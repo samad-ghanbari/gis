@@ -111,6 +111,7 @@
       "source-layer": "osm_places",
       "layout": {
         "text-field": ["get", "name"],
+        "text-anchor": "right",
         "text-font": ["Iranian Sans"],
         "text-size": ["interpolate", ["linear"], ["zoom"], 5, 10, 14, 16]
       },

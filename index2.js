@@ -14,7 +14,7 @@ app.use(cors()); // Enable CORS for all origins
 
 const pool = new Pool({
   user: "admin",
-  host: "10.10.10.96",
+  host: "10.10.10.56",
   database: "gis",
   password: "admin",
   port: 5432,
@@ -133,21 +133,22 @@ app.get("/tiles/:z/:x/:y.pbf", async (req, res) => {
     for (const [layerName, sql] of Object.entries(layers)) {
       const result = await pool.query(sql, bbox);
 
-      const features = result.rows.map(({ geometry, name, ...props }) => {
+      const features = result.rows.map((props) => {
         // Use reshaper on name and prepend RLM for RTL
-        const shapedName = name
-          ? "\u200F" + reshaper.PersianShaper.convertArabic(name)
-          : null;
+        // const shapedName = name
+        //   ? reshaper.PersianShaper.convertArabic(name)
+        //   : null;
 
         return {
           type: "Feature",
-          geometry: JSON.parse(geometry),
+          geometry: JSON.parse(props.geometry),
           properties: {
-            ...props,
-            name: shapedName,
+            name: props.name,
           },
         };
       });
+
+      //res.send(features);
 
       const tileIndex = geojsonvt({ type: "FeatureCollection", features });
 
@@ -165,10 +166,6 @@ app.get("/tiles/:z/:x/:y.pbf", async (req, res) => {
     const buff = vtpbf.fromGeojsonVt(tileLayers);
 
     res.setHeader("Content-Type", "application/x-protobuf");
-    res.setHeader(
-      "Content-Disposition",
-      `inline; filename="${zoom}-${tileX}-${tileY}.pbf"`
-    );
 
     res.send(buff);
   } catch (err) {
