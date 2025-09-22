@@ -1,0 +1,124 @@
+{
+  "version": 8,
+  "name": "Iran Local Map Style",
+  "metadata": {
+    "mapbox:autocomposite": false
+  },
+  "sources": {
+    "local-vector-tiles": {
+      "type": "vector",
+      "tiles": ["http://localhost:3000/tiles/{z}/{x}/{y}.pbf"],
+      "minzoom": 0,
+      "maxzoom": 14
+    }
+  },
+  "glyphs": "http://localhost:3000/fonts/{fontstack}/{range}.pbf",
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": { "background-color": "#e0e0d6" }
+    },
+    {
+      "id": "water",
+      "type": "fill",
+      "source": "local-vector-tiles",
+      "source-layer": "osm_water",
+      "paint": {
+        "fill-color": "#a0c8f0",
+        "fill-opacity": 0.6
+      }
+    },
+    {
+      "id": "parks",
+      "type": "fill",
+      "source": "local-vector-tiles",
+      "source-layer": "osm_parks",
+      "paint": {
+        "fill-color": "#a0d48e",
+        "fill-opacity": 0.6
+      }
+    },
+    {
+      "id": "buildings",
+      "type": "fill",
+      "source": "local-vector-tiles",
+      "source-layer": "osm_buildings",
+      "paint": {
+        "fill-color": "#bbb",
+        "fill-opacity": 0.7
+      }
+    },
+    {
+      "id": "railways",
+      "type": "line",
+      "source": "local-vector-tiles",
+      "source-layer": "osm_railways",
+      "paint": {
+        "line-color": "#999",
+        "line-width": 1.5,
+        "line-dasharray": [2, 4]
+      }
+    },
+    {
+      "id": "motorways",
+      "type": "line",
+      "source": "local-vector-tiles",
+      "source-layer": "osm_lines",
+      "filter": ["==", "highway", "motorway"],
+      "paint": {
+        "line-color": "#d35400",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 5, 1, 14, 5]
+      }
+    },
+    {
+      "id": "primary_roads",
+      "type": "line",
+      "source": "local-vector-tiles",
+      "source-layer": "osm_lines",
+      "filter": ["==", "highway", "primary"],
+      "paint": {
+        "line-color": "#f39c12",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 5, 0.7, 14, 4]
+      }
+    },
+    {
+      "id": "secondary_roads",
+      "type": "line",
+      "source": "local-vector-tiles",
+      "source-layer": "osm_lines",
+      "filter": ["==", "highway", "secondary"],
+      "paint": {
+        "line-color": "#f1c40f",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 7, 0.5, 14, 3]
+      }
+    },
+    {
+      "id": "residential_roads",
+      "type": "line",
+      "source": "local-vector-tiles",
+      "source-layer": "osm_lines",
+      "filter": ["==", "highway", "residential"],
+      "paint": {
+        "line-color": "#ecf0f1",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 10, 0.5, 14, 2]
+      }
+    },
+    {
+      "id": "place-labels",
+      "type": "symbol",
+      "source": "local-vector-tiles",
+      "source-layer": "osm_places",
+      "layout": {
+        "text-field": ["get", "name"],
+        "text-font": ["Iranian Sans"],
+        "text-size": ["interpolate", ["linear"], ["zoom"], 5, 10, 14, 16]
+      },
+      "paint": {
+        "text-color": "#800",
+        "text-halo-color": "#fff",
+        "text-halo-width": 1
+      }
+    }
+  ]
+}
