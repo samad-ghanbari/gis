@@ -6,12 +6,13 @@ const geojsonvt = rawGeojsonvt.default || rawGeojsonvt;
 const vtpbf = require("vt-pbf");
 const cors = require("cors"); // ← Import cors
 const path = require("path");
+const reshaper = require("arabic-persian-reshaper");
 
 const app = express();
 app.use(cors()); // ← Enable CORS for all origins
 const pool = new Pool({
   user: "admin",
-  host: "10.10.10.56",
+  host: "10.10.10.96",
   database: "gis",
   password: "admin",
   port: 5432,
@@ -153,12 +154,18 @@ app.get("/tiles/:z/:x/:y.pbf", async (req, res) => {
     for (const [layerName, sql] of Object.entries(layers)) {
       const result = await pool.query(sql, bbox);
       const features = result.rows.map((row) => {
-        const { geometry, ...props } = row;
+        const { geometry, name, ...rest } = row;
+        const shapedName = name
+          ? reshaper.PersianShaper.convertArabic(name)
+          : null;
 
         return {
           type: "Feature",
           geometry: JSON.parse(geometry),
-          properties: props,
+          properties: {
+            ...rest,
+            name: shapedName,
+          },
         };
       });
 
