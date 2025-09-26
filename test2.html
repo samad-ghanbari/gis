@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="/leaflet.css" />
     <style>
       #map {
         height: 800px;
@@ -15,54 +15,21 @@
     </style>
   </head>
   <body>
-    <h1>OpenStreetMap with Leaflet</h1>
+    <h1>Local Raster-Tile Server</h1>
     <div id="map"></div>
 
     <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="/leaflet.js"></script>
     <script>
       // Initialize map centered on a location (latitude, longitude)
       const map = L.map("map").setView([35.7, 51.4], 13); // teheran
 
       // Use OSM tiles
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      L.tileLayer("http://localhost:3000/tiles/{z}/{x}/{y}.png", {
         maxZoom: 19,
         attribution:
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map);
-
-      // Add a marker at the location
-      L.marker([35.69, 51.389])
-        .addTo(map)
-        .bindPopup("Hello from Tehran!")
-        .openPopup();
-
-      // 🔵 Add a circle at a specific location
-      const circle = L.circle([35.69, 51.389], {
-        color: "red",
-        fillColor: "#f03",
-        fillOpacity: 1,
-        radius: 500, // in meters
-      })
-        .addTo(map)
-        .bindPopup("I'm a circle!");
-
-      // Define a polygon roughly around central Tehran (coordinates in lat,lng)
-      const tehranPolygon = L.polygon(
-        [
-          [35, 50],
-          [35, 53],
-          [36, 53],
-          [36, 50],
-        ],
-        {
-          color: "green",
-          fillColor: "#0f3",
-          fillOpacity: 0.4,
-        }
-      )
-        .addTo(map)
-        .bindPopup("Polygon around Tehran city center");
     </script>
   </body>
 </html>
