@@ -15,7 +15,7 @@ def latlon_to_tile(lat_deg, lon_deg, zoom):
     y_tile = int((1 - (math.log(math.tan(lat_rad) + 1 / math.cos(lat_rad)) / math.pi)) / 2 * n)
     return x_tile, y_tile
 
-def download_tile(z, x, y, base_folder='tehran_tiles'):
+def download_tile(z, x, y, base_folder=''):
     folder = os.path.join(base_folder, str(z), str(x))
     os.makedirs(folder, exist_ok=True)
     filename = os.path.join(folder, f"{y}.png")
@@ -48,7 +48,7 @@ def main():
         print(f"Zoom level {zoom} - X tiles {x_start} to {x_end}, Y tiles {y_start} to {y_end}")
                
         for x in range(x_start, x_end + 1):
-            if x < 21079:
+            if x < 21101:
                 continue
             for y in range(y_start, y_end + 1):
                 download_tile(zoom, x, y)

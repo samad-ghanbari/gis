@@ -12,7 +12,7 @@ const app = express();
 app.use(cors()); // ← Enable CORS for all origins
 const pool = new Pool({
   user: "admin",
-  host: "10.10.10.96",
+  host: "10.10.10.56",
   database: "gis",
   password: "admin",
   port: 5432,
@@ -67,109 +67,12 @@ app.get("/tiles/:z/:x/:y.pbf", async (req, res) => {
   //console.log(z, limit);
 
   const layers = {
-    // Roads, highways, paths
-    osm_lines: `
+    highways: `
     SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, highway, name
     FROM planet_osm_line
     WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
       AND highway IS NOT NULL
-    LIMIT ${limit};
-  `,
-
-    osm_landcover: `
-  SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, "natural" AS subclass
-  FROM planet_osm_polygon
-  WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
-    AND "natural" = 'glacier'
-  LIMIT ${limit};
-`,
-    osm_landuse: `
-  SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, landuse AS class
-  FROM planet_osm_polygon
-  WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
-    AND landuse IN ('residential', 'suburb', 'neighbourhood')
-  LIMIT ${limit};
-`,
-
-    // Buildings
-    osm_buildings: `
-    SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, building, name
-    FROM planet_osm_polygon
-    WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
-      AND building IS NOT NULL
-    LIMIT ${limit};
-  `,
-
-    // Water bodies (polygon)
-    osm_water: `
-    SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, water, name
-    FROM planet_osm_polygon
-    WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
-      AND water IS NOT NULL
-    LIMIT ${limit};
-  `,
-
-    // Parks and green areas
-    osm_parks: `
-    SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, leisure, name
-    FROM planet_osm_polygon
-    WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
-      AND (leisure = 'park' OR landuse IN ('grass', 'forest'))
-    LIMIT ${limit};
-  `,
-
-    // Railways
-    osm_railways: `
-    SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, railway, name
-    FROM planet_osm_line
-    WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
-      AND railway IS NOT NULL
-    LIMIT ${limit};
-  `,
-
-    // Points of Interest (POIs)
-    //     SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, name, amenity, shop, tourism
-    // FROM planet_osm_polygon
-    // WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
-    //   AND (amenity IS NOT NULL OR shop IS NOT NULL OR tourism IS NOT NULL)
-    // LIMIT ${limit};
-
-    osm_pois: `
-        SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, name 
-         FROM planet_osm_polygon
-         WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
-        LIMIT ${limit};
-  `,
-
-    osm_waterway: `
-  SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry,
-         waterway AS class,
-         intermittent
-  FROM planet_osm_line
-  WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
-    AND waterway IS NOT NULL
-  LIMIT ${limit};
-`,
-
-    // Place labels (cities, towns)
-    // SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, name, place
-    // FROM planet_osm_point
-    // WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
-    //   AND place IS NOT NULL
-    // LIMIT ${limit};
-
-    //         SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, name, place
-    // FROM planet_osm_polygon
-    // WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
-    //   AND place IS NOT NULL
-    // LIMIT ${limit};
-
-    osm_places: `
-    SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, name 
-    FROM planet_osm_polygon
-    WHERE name is not NULL and way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
-    LIMIT ${limit};
-   ;
+    LIMIT 50000;
   `,
   };
 
