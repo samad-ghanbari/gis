@@ -1,0 +1,59 @@
+{
+  "version": 8,
+  "name": "Bright",
+  "metadata": {
+    "mapbox:autocomposite": false,
+    "mapbox:groups": {
+      "1444849242106.713": { "collapsed": false, "name": "Places" },
+      "1444849334699.1902": { "collapsed": true, "name": "Bridges" },
+      "1444849345966.4436": { "collapsed": false, "name": "Roads" },
+      "1444849354174.1904": { "collapsed": true, "name": "Tunnels" },
+      "1444849364238.8171": { "collapsed": false, "name": "Buildings" },
+      "1444849382550.77": { "collapsed": false, "name": "Water" },
+      "1444849388993.3071": { "collapsed": false, "name": "Land" }
+    },
+    "mapbox:type": "template",
+    "local-vector-tiles:mapbox:owner": "local-vector-tiles",
+    "local-vector-tiles:mapbox:source:url": "mapbox://local-vector-tiles.4qljc88t",
+    "local-vector-tiles:version": "3.x"
+  },
+  "center": [0, 0],
+  "zoom": 1,
+  "bearing": 0,
+  "pitch": 0,
+  "sources": {
+    "local-vector-tiles": {
+      "type": "vector",
+      "tiles": ["http://localhost:3000/tiles/{z}/{x}/{y}.pbf"],
+      "minzoom": 0,
+      "maxzoom": 14
+    }
+  },
+  "glyphs": "http://localhost:3000/fonts/{fontstack}/{range}.pbf",
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": { "background-color": "#eee" }
+    },
+    {
+      "id": "landcover-glacier",
+      "type": "fill",
+      "metadata": { "mapbox:group": "1444849388993.3071" },
+      "source": "local-vector-tiles",
+      "source-layer": "osm_lines",
+      "layout": { "visibility": "visible" },
+      "paint": {
+        "fill-color": "#000",
+        "fill-opacity": {
+          "base": 1,
+          "stops": [
+            [0, 0.9],
+            [10, 0.3]
+          ]
+        }
+      }
+    }
+  ],
+  "id": "bright"
+}

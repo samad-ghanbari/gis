@@ -112,7 +112,7 @@
       "layout": {
         "text-field": ["get", "name"],
         "text-anchor": "right",
-        "text-font": ["Iranian Sans"],
+        "text-font": ["B Yekan Regular"],
         "text-size": ["interpolate", ["linear"], ["zoom"], 5, 10, 14, 16]
       },
       "paint": {

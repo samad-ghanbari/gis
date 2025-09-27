@@ -21,7 +21,7 @@ const pool = new Pool({
 app.use("/", express.static(path.join(__dirname, "public")));
 
 app.get("/", async (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "index2.html"));
 });
 
 app.get("/fonts/:fontstack/:range.pbf", (req, res) => {
@@ -76,6 +76,21 @@ app.get("/tiles/:z/:x/:y.pbf", async (req, res) => {
     LIMIT ${limit};
   `,
 
+    osm_landcover: `
+  SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, "natural" AS subclass
+  FROM planet_osm_polygon
+  WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
+    AND "natural" = 'glacier'
+  LIMIT ${limit};
+`,
+    osm_landuse: `
+  SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, landuse AS class
+  FROM planet_osm_polygon
+  WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
+    AND landuse IN ('residential', 'suburb', 'neighbourhood')
+  LIMIT ${limit};
+`,
+
     // Buildings
     osm_buildings: `
     SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, building, name
@@ -125,6 +140,16 @@ app.get("/tiles/:z/:x/:y.pbf", async (req, res) => {
          WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
         LIMIT ${limit};
   `,
+
+    osm_waterway: `
+  SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry,
+         waterway AS class,
+         intermittent
+  FROM planet_osm_line
+  WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
+    AND waterway IS NOT NULL
+  LIMIT ${limit};
+`,
 
     // Place labels (cities, towns)
     // SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, name, place
