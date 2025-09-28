@@ -6,7 +6,7 @@ import time
 # Tehran bounding box
 min_lat, max_lat = 35, 36
 min_lon, max_lon = 50, 53
-min_zoom, max_zoom = 15, 15
+min_zoom, max_zoom = 16, 16
 
 def latlon_to_tile(lat_deg, lon_deg, zoom):
     lat_rad = math.radians(lat_deg)
@@ -26,7 +26,7 @@ def download_tile(z, x, y, base_folder=''):
 
     url = f"https://tile.openstreetmap.org/{z}/{x}/{y}.png"
     headers = {
-        "User-Agent": "Mozilla/135.0 (compatible; MyTileDownloader/2.0; +https://testtile.com/)"
+        "User-Agent": "Mozilla/125.0 (compatible; MyTileDownloader/2.0; +https://test2tile2.com/)"
     }
 
     try:
@@ -48,11 +48,11 @@ def main():
         print(f"Zoom level {zoom} - X tiles {x_start} to {x_end}, Y tiles {y_start} to {y_end}")
                
         for x in range(x_start, x_end + 1):
-            if x < 21101:
-                continue
+            #if x < 21132:
+                #continue
             for y in range(y_start, y_end + 1):
                 download_tile(zoom, x, y)
-                time.sleep(1)  # 1 second delay to be polite
+                time.sleep(0.5)  # 1 second delay to be polite
 
 if __name__ == "__main__":
     main()
