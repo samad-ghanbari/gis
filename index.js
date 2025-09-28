@@ -12,7 +12,7 @@ const app = express();
 app.use(cors()); // ← Enable CORS for all origins
 const pool = new Pool({
   user: "admin",
-  host: "10.10.10.96",
+  host: "10.10.10.56",
   database: "gis",
   password: "admin",
   port: 5432,
@@ -72,7 +72,6 @@ app.get("/tiles/:z/:x/:y.pbf", async (req, res) => {
     FROM planet_osm_line
     WHERE way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
       AND highway IS NOT NULL
-    LIMIT 50000;
   `,
   };
 

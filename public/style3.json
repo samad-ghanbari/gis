@@ -19,16 +19,6 @@
       "id": "background",
       "type": "background",
       "paint": { "background-color": "#eee" }
-    },
-    {
-      "id": "landcover-glacier",
-      "type": "fill",
-      "source": "local-vector-tiles",
-      "source-layer": "highways",
-      "layout": { "visibility": "visible" },
-      "paint": {
-        "fill-color": "#888"
-      }
     }
   ]
 }
