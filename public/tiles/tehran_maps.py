@@ -48,7 +48,7 @@ def main():
         print(f"Zoom level {zoom} - X tiles {x_start} to {x_end}, Y tiles {y_start} to {y_end}")
                
         for x in range(x_start, x_end + 1):
-            if x < 41950:
+            if x < 42029:
                 continue
             for y in range(y_start, y_end + 1):
                 download_tile(zoom, x, y)
