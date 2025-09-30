@@ -14,7 +14,7 @@ app.use(cors());
 
 const pool = new Pool({
   user: "admin",
-  host: "10.10.10.96",
+  host: "10.10.10.56",
   database: "gis",
   password: "admin",
   port: 5432,
@@ -106,7 +106,11 @@ app.get("/:layer/:z/:x/:y.pbf", async (req, res) => {
             AND way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
       `,
       transportation: `
-      
+            SELECT osm_id, ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, name, highway as class
+            FROM planet_osm_line
+            WHERE highway IN ('residential', 'tertiary', 'secondary', 'primary', 'trunk',  'tertiary_link', 'secondary_link', 'primary_link', 'trunk_link')
+              AND tunnel = 'yes'
+              AND way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857);
       `,
     },
   };

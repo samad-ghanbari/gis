@@ -124,67 +124,24 @@
       }
     },
     {
-      "id": "tunnel_street_casing",
+      "id": "highway_primary",
       "type": "line",
       "source": "openmaptiles",
       "source-layer": "transportation",
-      "filter": ["all", ["in", "class", "street", "street_limited"]],
+      "filter": [
+        "all",
+        [
+          "in",
+          "class",
+          "primary_link",
+          "trunk_link",
+          "secondary",
+          "secondary_link"
+        ]
+      ],
       "layout": { "line-join": "round" },
       "paint": {
-        "line-color": "#cfcdca",
-        "line-opacity": {
-          "stops": [
-            [12, 0],
-            [12.5, 1]
-          ]
-        },
-        "line-width": {
-          "base": 1.2,
-          "stops": [
-            [12, 0.5],
-            [13, 1],
-            [14, 4],
-            [20, 15]
-          ]
-        }
-      }
-    },
-    {
-      "id": "tunnel_secondary_tertiary_casing",
-      "type": "line",
-      "source": "openmaptiles",
-      "source-layer": "transportation",
-      "filter": ["all", ["in", "class", "secondary", "tertiary"]],
-      "layout": { "line-join": "round" },
-      "paint": {
-        "line-color": "#e9ac77",
-        "line-width": {
-          "base": 1.2,
-          "stops": [
-            [8, 1.5],
-            [20, 17]
-          ]
-        }
-      }
-    },
-    {
-      "id": "tunnel_trunk_primary_casing",
-      "type": "line",
-      "source": "openmaptiles",
-      "source-layer": "transportation",
-      "filter": ["all", ["in", "class", "primary", "trunk"]],
-      "layout": { "line-join": "round" },
-      "paint": {
-        "line-color": "#e9ac77",
-        "line-width": {
-          "base": 1.2,
-          "stops": [
-            [5, 0.4],
-            [6, 0.7],
-            [7, 1.75],
-            [20, 22]
-          ]
-        }
+        "line-color": "#f00"
       }
     }
   ],
