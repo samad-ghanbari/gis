@@ -25,7 +25,12 @@
         container: "map",
         style: "/style04.json",
         center: [51.41, 35.7],
-        zoom: 12,
+        zoom: 10,
+        minZoom: 6,
+        maxBounds: [
+          [49, 35], // min longitude, min latitude
+          [53, 37], // max longitude, max latitude
+        ],
       });
     </script>
   </body>

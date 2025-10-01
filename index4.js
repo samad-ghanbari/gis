@@ -14,7 +14,7 @@ app.use(cors());
 
 const pool = new Pool({
   user: "admin",
-  host: "10.10.10.56",
+  host: "10.10.10.96",
   database: "gis",
   password: "admin",
   port: 5432,
@@ -71,9 +71,12 @@ app.get("/:layer/:z/:x/:y.pbf", async (req, res) => {
     xNum = +x,
     yNum = +y;
 
+  console.log(zNum, xNum, yNum);
+
   const bbox = tilebelt.tileToBBOX([xNum, yNum, zNum]); // [minX, minY, maxX, maxY] in WGS84
 
   // Define SQL queries for each layer based on your database schema
+  // zoom-levels: 12 10 8
   const layerQueries = {
     openmaptiles: {
       // Example for 'park' and 'landuse' in openmaptiles source
@@ -83,13 +86,13 @@ app.get("/:layer/:z/:x/:y.pbf", async (req, res) => {
           WHERE leisure='park' AND way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
       `,
       landuse: `
-          SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, COALESCE(landuse, "amenity") AS class
+          SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, COALESCE(landuse, "amenity") AS class, name
           FROM planet_osm_polygon
           WHERE ( LOWER(landuse) IN ('residential', 'cemetery') OR "amenity" IN ('hospital' , 'school' ))
             AND way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
   `,
       landcover: `
-          SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, COALESCE("natural", "landuse") AS "class"
+          SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, COALESCE("natural", "landuse") AS "class", name
           FROM planet_osm_polygon
           WHERE
             (
@@ -105,25 +108,66 @@ app.get("/:layer/:z/:x/:y.pbf", async (req, res) => {
             WHERE waterway = 'river'
             AND way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
       `,
+      water: `
+            SELECT  name, ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, "natural"
+            FROM planet_osm_polygon
+            WHERE "natural" = 'water' AND name is not null 
+            AND way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857);`,
       transportation: `
             SELECT osm_id, ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, name, highway as class
             FROM planet_osm_line
-            WHERE highway IN ('residential', 'tertiary', 'secondary', 'primary', 'trunk',  'tertiary_link', 'secondary_link', 'primary_link', 'trunk_link')
-              AND tunnel = 'yes'
-              AND way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857);
+            WHERE highway IN ('residential', 'tertiary', 'secondary', 'primary', 'trunk',  'motorway')
+              AND way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
+              AND $5::int >= 12;
       `,
+      railway: `
+      SELECT
+          osm_id,
+          name,
+          railway,
+          ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry
+        FROM
+          planet_osm_line
+        WHERE
+          railway IS NOT NULL
+          AND way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857);
+
+      `,
+      country: `
+        SELECT DISTINCT ON(name)  name, ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry
+        FROM planet_osm_polygon
+        WHERE boundary = 'administrative'
+        AND name IS NOT NULL
+        AND way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857);
+`,
     },
   };
 
+  /*
+  | Road Class   | General Description                              |
+| ------------ | ------------------------------------------------ |
+| motorway     | Major highways or freeways (high-speed roads)    |
+| trunk        | Major primary roads (important highways)         |
+| primary      | Primary roads (important but smaller than trunk) |
+| **tertiary** | Main secondary roads (third-level roads)         |
+| secondary    | Secondary roads (medium importance)              |
+| residential  | Streets inside residential neighborhoods         |
+
+  */
   try {
     let tileLayers = {};
+    let params = [];
 
     if (layer === "openmaptiles") {
       // For openmaptiles, fetch multiple sublayers
       for (const [subLayerName, sql] of Object.entries(
         layerQueries.openmaptiles
       )) {
-        const features = await fetchFeatures(sql, bbox);
+        if (subLayerName === "transportation") {
+          // Add zoom parameter only for transportation
+          params = [...bbox, zNum];
+        } else params = bbox;
+        const features = await fetchFeatures(sql, params);
 
         if (features.length) {
           const tileIndex = geojsonvt({ type: "FeatureCollection", features });
