@@ -12,6 +12,8 @@
   "dependencies": {
     "@mapbox/tilebelt": "^2.0.2",
     "arabic-persian-reshaper": "^1.0.1",
+    "arabic-reshaper": "^1.1.0",
+    "bidi-js": "^1.0.3",
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "geojson-vt": "^4.0.2",

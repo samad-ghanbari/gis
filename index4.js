@@ -7,6 +7,8 @@ const vtpbf = require("vt-pbf");
 const cors = require("cors");
 const path = require("path");
 const fs = require("fs");
+const arabicReshaper = require("arabic-reshaper");
+const bidi = require("bidi-js");
 const reshaper = require("arabic-persian-reshaper");
 
 const app = express();
@@ -14,7 +16,7 @@ app.use(cors());
 
 const pool = new Pool({
   user: "admin",
-  host: "10.10.10.96",
+  host: "10.10.10.56",
   database: "gis",
   password: "admin",
   port: 5432,
@@ -55,7 +57,22 @@ async function fetchFeatures(sql, params) {
     const shapedName = props.name
       ? reshaper.PersianShaper.convertArabic(props.name)
       : null;
-    if (shapedName !== null) props.name = shapedName;
+    //if (shapedName !== null) props.name = shapedName;
+
+    props.name = "\u200F" + "سلام";
+    const reshaped = arabicReshaper.convertArabic(props.name);
+
+    // Apply bidi algorithm to reorder for RTL display
+    const bidi = bidiFactory();
+    const embeddingLevels = bidi.getEmbeddingLevels(
+      reshaped, //the input string containing mixed-direction text
+      "rtl"
+    );
+    const { levels, paragraphs } = embeddingLevels;
+
+    //const bidiText = bidi.getEmbeddingLevels(reshaped);
+
+    props.name = paragraphs;
 
     return {
       type: "Feature",
