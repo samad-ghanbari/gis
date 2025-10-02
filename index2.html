@@ -23,7 +23,7 @@
     <script>
       const map = new mapboxgl.Map({
         container: "map",
-        style: "/style04.json",
+        style: "/style05.json",
         center: [51.41, 35.7],
         zoom: 10,
         minZoom: 6,
@@ -32,6 +32,42 @@
           [53, 37], // max longitude, max latitude
         ],
       });
+      mapboxgl.setRTLTextPlugin("/mapbox-rtl-text.js", null, true);
     </script>
   </body>
 </html>
+
+<!-- 
+
+Layer Type        	Feature/Class       	Suggested Color
+Background	                              	#f2efe9
+Water                                   		#cceeff
+Park/Forest       	wood, forest          	#c5e1a5
+Grass             	grass                 	#d0f0c0
+Residential  Landuse	residential         	#e0dfdf
+Cemetery	        cemetery	                #c8e6c9
+Hospital        	hospital	                #f8bbd0
+School	          school	                  #fff9c4
+Roads             (Motorways)	motorway    	#ffcc00
+Roads (Primary)	  primary	                  #ffddaa
+Roads (Secondary)	secondary	                #fff4c6
+Roads (Tertiary)	tertiary	                #f9ac77
+Residential Roads	residential	              #ffffff
+Railways	rail	                            #444444 dashed
+
+
+| Highway Type     | Hex Color | Description                 |
+| ---------------- | --------- | --------------------------- |
+| **motorway**     | `#7F007F` | Dark purple                 |
+| **trunk**        | `#FF8000` | Orange                      |
+| **primary**      | `#FFDD00` | Yellow                      |
+| **secondary**    | `#FFFFC0` | Pale yellow/light cream     |
+| **tertiary**     | `#F8F8F8` | Very light gray/white       |
+| **unclassified** | `#F8F8F8` | Very light gray/white       |
+| **residential**  | `#F8F8F8` | Very light gray/white       |
+| **service**      | `#D0D0D0` | Light gray                  |
+| **track**        | `#C0C0C0` | Gray, often dashed          |
+| **path/footway** | `#A0A0A0` | Gray or brownish thin lines |
+
+
+-->

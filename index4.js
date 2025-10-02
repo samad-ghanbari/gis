@@ -7,9 +7,6 @@ const vtpbf = require("vt-pbf");
 const cors = require("cors");
 const path = require("path");
 const fs = require("fs");
-const arabicReshaper = require("arabic-reshaper");
-const bidi = require("bidi-js");
-const reshaper = require("arabic-persian-reshaper");
 
 const app = express();
 app.use(cors());
@@ -54,25 +51,6 @@ async function fetchFeatures(sql, params) {
   const result = await pool.query(sql, params);
   return result.rows.map((row) => {
     const { geometry, ...props } = row;
-    const shapedName = props.name
-      ? reshaper.PersianShaper.convertArabic(props.name)
-      : null;
-    //if (shapedName !== null) props.name = shapedName;
-
-    props.name = "\u200F" + "سلام";
-    const reshaped = arabicReshaper.convertArabic(props.name);
-
-    // Apply bidi algorithm to reorder for RTL display
-    const bidi = bidiFactory();
-    const embeddingLevels = bidi.getEmbeddingLevels(
-      reshaped, //the input string containing mixed-direction text
-      "rtl"
-    );
-    const { levels, paragraphs } = embeddingLevels;
-
-    //const bidiText = bidi.getEmbeddingLevels(reshaped);
-
-    props.name = paragraphs;
 
     return {
       type: "Feature",
@@ -88,7 +66,7 @@ app.get("/:layer/:z/:x/:y.pbf", async (req, res) => {
     xNum = +x,
     yNum = +y;
 
-  console.log(zNum, xNum, yNum);
+  //console.log(zNum, xNum, yNum);
 
   const bbox = tilebelt.tileToBBOX([xNum, yNum, zNum]); // [minX, minY, maxX, maxY] in WGS84
 
@@ -133,9 +111,15 @@ app.get("/:layer/:z/:x/:y.pbf", async (req, res) => {
       transportation: `
             SELECT osm_id, ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, name, highway as class
             FROM planet_osm_line
-            WHERE highway IN ('residential', 'tertiary', 'secondary', 'primary', 'trunk',  'motorway')
+            WHERE highway IN ('residential', 'tertiary', 'secondary', 'primary', 'unclassified')
               AND way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857)
-              AND $5::int >= 12;
+              AND $5::int >= 10;
+      `,
+      trunk: `
+             SELECT osm_id, ST_AsGeoJSON(ST_Transform(way, 4326)) AS geometry, name, highway as class
+            FROM planet_osm_line
+            WHERE highway IN ( 'trunk',  'motorway')
+              AND way && ST_Transform(ST_MakeEnvelope($1, $2, $3, $4, 4326), 3857);   
       `,
       railway: `
       SELECT
