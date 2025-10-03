@@ -22,7 +22,7 @@ const pool = new Pool({
 app.use("/", express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index2.html"));
+  res.sendFile(path.join(__dirname, "vector.html"));
 });
 
 app.get("/fonts/:fontstack/:range.pbf", (req, res) => {

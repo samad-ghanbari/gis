@@ -10,13 +10,14 @@ app.use(cors()); // Enable CORS for all origins
 app.use("/", express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "test2.html"));
+  res.sendFile(path.join(__dirname, "raster.html"));
 });
 
 // Route to serve tile images
 app.get("/tiles/:z/:x/:y.png", (req, res) => {
   const { z, x, y } = req.params;
   const tilePath = path.join(__dirname, "tiles", z, x, `${y}.png`);
+  console.log(z, x, y);
 
   fs.access(tilePath, fs.constants.R_OK, (err) => {
     if (err) {

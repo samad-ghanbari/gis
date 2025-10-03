@@ -280,11 +280,14 @@
         "text-field": "{name}",
         "text-font": ["B Yekan Regular"],
         "text-size": 13,
-
         "symbol-placement": "line",
+        "symbol-spacing": 300,
+        "text-anchor": "center",
+        "text-justify": "center",
         "text-max-width": 8,
-        "symbol-spacing": 400,
-        "text-padding": 4
+        "text-padding": 2,
+        "text-allow-overlap": false,
+        "text-ignore-placement": false
       },
       "paint": {
         "text-color": "#333333",
