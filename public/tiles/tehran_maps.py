@@ -4,9 +4,14 @@ import requests
 import time
 
 # Tehran bounding box
-min_lat, max_lat = 35, 36
-min_lon, max_lon = 50, 53
-min_zoom, max_zoom = 16, 16
+#min_lat, max_lat = 35, 36
+#min_lon, max_lon = 50, 53
+#min_zoom, max_zoom = 9, 9
+
+#Iran
+min_lat, max_lat = -85, 85
+min_lon, max_lon = -180, 180
+min_zoom, max_zoom = 5,5
 
 def latlon_to_tile(lat_deg, lon_deg, zoom):
     lat_rad = math.radians(lat_deg)
@@ -48,8 +53,8 @@ def main():
         print(f"Zoom level {zoom} - X tiles {x_start} to {x_end}, Y tiles {y_start} to {y_end}")
                
         for x in range(x_start, x_end + 1):
-            if x < 42387:
-                continue
+            #if x < 42387:
+            #    continue
             for y in range(y_start, y_end + 1):
                 download_tile(zoom, x, y)
                 time.sleep(0.5)  # 1 second delay to be polite
