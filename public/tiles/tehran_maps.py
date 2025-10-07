@@ -11,7 +11,7 @@ import time
 #Iran
 min_lat, max_lat = -85, 85
 min_lon, max_lon = -180, 180
-min_zoom, max_zoom = 6,6
+min_zoom, max_zoom = 7,7
 
 def latlon_to_tile(lat_deg, lon_deg, zoom):
     lat_rad = math.radians(lat_deg)
